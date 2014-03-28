@@ -76,8 +76,8 @@ def execute():
                 
         # Create the JSON string
         json = ""
-        json += '{\n\t"' + matName + '":\n\t{\n\t\t"table":"' + tableName + \
-                '",\n\t\t"tMin":' + tMin + ',\n\t\t"tMax":' + tMax + ',\n\t\t' +\
+        json += '{\n\t"props":\n\t{\n\t\t"table":"' + tableName + '",\n\t\t"name":"' + matName +\
+                '"\n\t\t"tMin":' + tMin + ',\n\t\t"tMax":' + tMax + ',\n\t\t' +\
                 '"T":[' + tstring + '],\n\t\t' + '"rho":[' + rhostring + '],\n\t\t' +\
                 '"cp":[' + cpstring + '],\n\t\t' + '"mu":[' + mustring + '],\n\t\t' +\
                 '"nu":[' + nustring + '],\n\t\t' + '"k":[' + kstring + '],\n\t\t' +\

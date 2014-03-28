@@ -157,4 +157,42 @@ body {
     -moz-border-radius:6px 0 6px 6px;
     border-radius:6px 0 6px 6px;
 }
-- See more at: http://firdaus.grandexa.com/2013/09/twitter-bootstrap-3-multilevel-dropdown-menu/#sthash.eG4Kcm2p.dpuf
+/*- See more at: http://firdaus.grandexa.com/2013/09/twitter-bootstrap-3-multilevel-dropdown-menu/#sthash.eG4Kcm2p.dpuf */
+
+/* Custom styles */
+.material
+{
+  cursor:pointer;
+}
+
+.calcSetup
+{
+  max-width:250px;
+  margin:auto;
+}
+
+#dropdownMenu
+{
+  width:165px;
+  display:block;
+  margin:auto;
+}
+#temp{
+  width:165px;
+  margin:auto;
+}
+#calc
+{
+  display:block;
+  margin:auto;
+}
+.small-gap{
+  display:block;
+  content:" ";
+  margin:10px 0px;
+}
+
+.panel-heading
+{
+  font-size:16px;
+}
