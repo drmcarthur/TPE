@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="ico/chart.ico">
+
+    <title>Heat Transfer Property Explorer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+      
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  
+    <![endif]-->
+  </head>
+
+  <body>
+    <!-- Top Navigation Bar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a id="mainHeading" class="navbar-brand text-center myGray">Thermophysical Property Explorer</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">About</a></li>
+            <li><a href="http://www.et.byu.edu/~vps/ME340/ME340.htm">ME EN 340</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        
+        <!-- Side Navigation Bar -->
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Property Calculator</a></li>
+            <li><a href="#">Graphs</a></li>
+            <li><a href="#">Tables</a></li>
+          </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Calculate Properties</h1>
+          <div class="well well-sm">
+            
+            <!-- Single button -->
+            <div class="dropdown">
+              <button onclick="generateTableView();" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-plus"></span> Select a Material...
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation" class="dropdown-submenu">
+                  <a role="menuitem" tabindex="-1" href="#">Gases at Atmospheric Pressure</a>
+                  <ul class="dropdown-menu">
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="AIR">Air</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="NH3">Ammonia (NH3)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="CO2">Carbon Dioxide (CO2)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="CO">Carbon Monoxide (CO)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="HE">Helium (He)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="H2">Hydrogen (H2)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="N2">Nitrogen (N2)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="O2">Oxygen (O2)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="H20_ST">Water Vapor (Steam)</a></li>
+                  </ul>
+                </li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation" class="dropdown-submenu">
+                  <a role="menuitem" tabindex="-1" href="#">Saturated Fluids</a>
+                  <ul class="dropdown-menu">
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="OIL">Engine Oil (Unused)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="EG">Ethylene Glycol [C2H4(OH)2]</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="GLY">Glycerin [C3H5(OH)3]</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="FREON">Freon (Refrigerant-12) (CC12F2)</a></li>
+                    <li role="presentation"><a tabindex="-1" class="material" data-material="HG">Mercury (Hg)</a></li>
+                  </ul>
+                </li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+              </ul>
+            </div>
+            
+            <br/><br/>
+          <div class="panel panel-success">
+            <div class="panel-heading">Material Properties</div>
+            <div class="table-responsive">
+              <table id="dataTable" class="table table-bordered table-striped">
+                <tbody>
+                <!--
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                    <th>Header</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1,001</td>
+                    <td>Lorem</td>
+                    <td>ipsum</td>
+                    <td>dolor</td>
+                    <td>sit</td>
+                  </tr>
+                  <tr>
+                    <td>1,002</td>
+                    <td>amet</td>
+                    <td>consectetur</td>
+                    <td>adipiscing</td>
+                    <td>elit</td>
+                  </tr>
+                  <tr>
+                    <td>1,003</td>
+                    <td>Integer</td>
+                    <td>nec</td>
+                    <td>odio</td>
+                    <td>Praesent</td>
+                  </tr>
+                  <tr>
+                    <td>1,003</td>
+                    <td>libero</td>
+                    <td>Sed</td>
+                    <td>cursus</td>
+                    <td>ante</td>
+                  </tr>
+                  <tr>
+                    <td>1,004</td>
+                    <td>dapibus</td>
+                    <td>diam</td>
+                    <td>Sed</td>
+                    <td>nisi</td>
+                  </tr>
+                  <tr>
+                    <td>1,005</td>
+                    <td>Nulla</td>
+                    <td>quis</td>
+                    <td>sem</td>
+                    <td>at</td>
+                  </tr>
+                  <tr>
+                    <td>1,006</td>
+                    <td>nibh</td>
+                    <td>elementum</td>
+                    <td>imperdiet</td>
+                    <td>Duis</td>
+                  </tr>
+                  <tr>
+                    <td>1,007</td>
+                    <td>sagittis</td>
+                    <td>ipsum</td>
+                    <td>Praesent</td>
+                    <td>mauris</td>
+                  </tr>
+                  <tr>
+                    <td>1,008</td>
+                    <td>Fusce</td>
+                    <td>nec</td>
+                    <td>tellus</td>
+                    <td>sed</td>
+                  </tr>
+                  <tr>
+                    <td>1,009</td>
+                    <td>augue</td>
+                    <td>semper</td>
+                    <td>porta</td>
+                    <td>Mauris</td>
+                  </tr>
+                  <tr>
+                    <td>1,010</td>
+                    <td>massa</td>
+                    <td>Vestibulum</td>
+                    <td>lacinia</td>
+                    <td>arcu</td>
+                  </tr>
+                  <tr>
+                    <td>1,011</td>
+                    <td>eget</td>
+                    <td>nulla</td>
+                    <td>Class</td>
+                    <td>aptent</td>
+                  </tr>
+                  <tr>
+                    <td>1,012</td>
+                    <td>taciti</td>
+                    <td>sociosqu</td>
+                    <td>ad</td>
+                    <td>litora</td>
+                  </tr>
+                  <tr>
+                    <td>1,013</td>
+                    <td>torquent</td>
+                    <td>per</td>
+                    <td>conubia</td>
+                    <td>nostra</td>
+                  </tr>
+                  <tr>
+                    <td>1,014</td>
+                    <td>per</td>
+                    <td>inceptos</td>
+                    <td>himenaeos</td>
+                    <td>Curabitur</td>
+                  </tr>
+                  <tr>
+                    <td>1,015</td>
+                    <td>sodales</td>
+                    <td>ligula</td>
+                    <td>in</td>
+                    <td>libero</td>
+                  </tr>
+            -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+          
+    <script src="js/Table_A4_CO.json"></script>
+    <script src="js/calculate.js"></script>
+  </body>
+</html>
