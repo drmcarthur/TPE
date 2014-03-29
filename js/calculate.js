@@ -1,11 +1,23 @@
 
 // Generate a table with desired material properties
-function addRow(material,temp,) {
+function addRow(material) {
     $("#dataTable").append("<tbody>");
-    for (var i=0; i<Table_A4.CO.T.length;i++) {
-	trow = "<tr><td>" + Table_A4.CO.T[i] + "</td><td>" + Table_A4.CO.rho[i] + "</td></tr>";
-	$("#dataTable").append(trow);
+    var trow = "<tr>"
+    	alert(window[material].props["T"][0]);
+    for (var prop in window[material].props)
+    {
+
+	if (prop == Array) {
+	    trow += "<td data-pname='" + window[material].props[prop][0] + "'>" + window[material].props[prop][0] + "</td>";
+	    alert("got here...");
+	}
+	else {
+	    trow += "<td data-pname='" + window[material].props[prop] + "'>" + window[material].props[prop] + "</td>";
+	}
+	
     }
+    trow += "</tr>"
+    $("#dataTable").append(trow);
     $("#dataTable").append("</tbody>");
     $("#dataTable").css("display", "block");
 }
@@ -31,5 +43,5 @@ var CO = eval({
 	    "alpha":[82.4,93.3,104,116],
 	    "pr":[0.705,0.702,0.702,0.705]
 	}
-})
+});
 

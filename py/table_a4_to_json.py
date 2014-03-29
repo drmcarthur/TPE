@@ -77,7 +77,7 @@ def execute():
         # Create the JSON string
         json = ""
         json += '{\n\t"props":\n\t{\n\t\t"table":"' + tableName + '",\n\t\t"name":"' + matName +\
-                '"\n\t\t"tMin":' + tMin + ',\n\t\t"tMax":' + tMax + ',\n\t\t' +\
+                '",\n\t\t"tMin":' + tMin + ',\n\t\t"tMax":' + tMax + ',\n\t\t' +\
                 '"T":[' + tstring + '],\n\t\t' + '"rho":[' + rhostring + '],\n\t\t' +\
                 '"cp":[' + cpstring + '],\n\t\t' + '"mu":[' + mustring + '],\n\t\t' +\
                 '"nu":[' + nustring + '],\n\t\t' + '"k":[' + kstring + '],\n\t\t' +\
@@ -90,6 +90,7 @@ def execute():
         print "JSON file created: '" + outName + "'"
         
     except Exception, e:
+        print "Error encountered... aborting..."
         print e.message
         
 # Make this program execute
