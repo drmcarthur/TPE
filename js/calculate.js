@@ -45,3 +45,10 @@ var CO = eval({
 	}
 });
 
+$(".material").click(function() {
+    //window.alert(this.innerHTML);
+    $("#matSelector").hide();
+    $("#materialText").html('Properties of <em>' + this.innerHTML + '</em><br/>');
+    $("#tempRange").html('T = ' + window[this.dataset.material].props.tMin + ' - ' +
+			 window[this.dataset.material].props.tMax + ' K'); 
+});
