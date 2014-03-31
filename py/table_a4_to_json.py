@@ -8,12 +8,14 @@ def execute():
     
     # Store the filename
     table = args.tableName
-    splitName = table.split("/")[-1]
-    splitName = splitName.split(".")[0]
-    outName = "../js/" + splitName + ".json"
-
+    openFile = "../tables/txt/" + table + ".txt"
+    #splitName = table.split(".")[0]
+    #splitName = splitName.split(".")[0]
+    #outName = "../js/" + splitName + ".json"
+    outName = "../tables/json/" + table + ".json";
+    print outName
     try:
-        with open(table,'r') as fID:
+        with open(openFile,'r') as fID:
             # Set up variables to store table data
             T = []
             rho = []
