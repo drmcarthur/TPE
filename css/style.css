@@ -177,6 +177,7 @@ body {
   font-size:16px;
   display:block;
   margin:auto;
+  margin-top: 7px;
 }
 #temp{
   width:165px;
