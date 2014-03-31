@@ -1,7 +1,7 @@
 {
 	"table":"A7",
 	"name":"POTASSIUM",
-	"meltpt":337",
+	"meltpt":337,
 	"tMin":422,
 	"tMax":977,
 	"T":[422,700,977],

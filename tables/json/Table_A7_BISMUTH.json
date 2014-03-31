@@ -1,7 +1,7 @@
 {
 	"table":"A7",
 	"name":"BISMUTH",
-	"meltpt":544",
+	"meltpt":544,
 	"tMin":589,
 	"tMax":1033,
 	"T":[589,811,1033],

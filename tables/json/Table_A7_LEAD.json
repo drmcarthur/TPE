@@ -1,7 +1,7 @@
 {
 	"table":"A7",
 	"name":"LEAD",
-	"meltpt":600",
+	"meltpt":600,
 	"tMin":644,
 	"tMax":977,
 	"T":[644,755,977],

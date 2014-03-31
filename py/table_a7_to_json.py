@@ -80,7 +80,7 @@ def execute():
         json = ""
         json += '{\n\t"table":"' + tableName + '",\n\t"name":"' + matName +\
                 '",\n\t"meltpt":' + meltptstring +\
-                '",\n\t"tMin":' + tMin + ',\n\t"tMax":' + tMax + ',\n\t' +\
+                ',\n\t"tMin":' + tMin + ',\n\t"tMax":' + tMax + ',\n\t' +\
                 '"T":[' + tstring + '],\n\t' + '"rho":[' + rhostring + '],\n\t' +\
                 '"cp":[' + cpstring + '],\n\t' +\
                 '"nu":[' + nustring + '],\n\t' + '"k":[' + kstring + '],\n\t' +\

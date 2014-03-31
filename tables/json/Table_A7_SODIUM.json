@@ -1,7 +1,7 @@
 {
 	"table":"A7",
 	"name":"SODIUM",
-	"meltpt":371",
+	"meltpt":371,
 	"tMin":366,
 	"tMax":977,
 	"T":[366,644,977],

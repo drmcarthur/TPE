@@ -1,7 +1,7 @@
 {
 	"table":"A7",
 	"name":"NAK22",
-	"meltpt":262",
+	"meltpt":262,
 	"tMin":366,
 	"tMax":1033,
 	"T":[366,672,1033],
