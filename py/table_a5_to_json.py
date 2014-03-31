@@ -25,6 +25,7 @@ def execute():
             k = []
             alpha = []
             pr = []
+            beta = []
             
             # Read in all the data from the table
             matName = fID.readline().rstrip('\n')
@@ -43,6 +44,7 @@ def execute():
                 k.append(line[5])
                 alpha.append(line[6])
                 pr.append(line[7])
+                beta.append(line[8])
         # Prepare for loop
         i = 0
         
@@ -55,6 +57,7 @@ def execute():
         kstring = ""
         alphastring = ""
         prstring = ""
+        betastring = ""
         for temp in T:
             tstring += temp
             rhostring += rho[i]
@@ -64,7 +67,7 @@ def execute():
             kstring += k[i]
             alphastring += alpha[i]
             prstring += pr[i]
-            
+            betastring += beta[i]
             if(i < len(T) - 1):
                 tstring += ","
                 rhostring += ","
@@ -74,6 +77,7 @@ def execute():
                 kstring += ","
                 alphastring += ","
                 prstring += ","
+                betastring += ","
             i += 1
                 
         # Create the JSON string
@@ -83,7 +87,8 @@ def execute():
                 '"T":[' + tstring + '],\n\t' + '"rho":[' + rhostring + '],\n\t' +\
                 '"cp":[' + cpstring + '],\n\t' + '"mu":[' + mustring + '],\n\t' +\
                 '"nu":[' + nustring + '],\n\t' + '"k":[' + kstring + '],\n\t' +\
-                '"alpha":[' + alphastring + '],\n\t' + '"pr":[' + prstring + ']\n}'
+                '"alpha":[' + alphastring + '],\n\t' + '"pr":[' + prstring + '],\n\t' +\
+                '"beta":[' + betastring + ']\n}'
         
         # Write the JSON string to a file
         with open(outName,'w') as fOut:

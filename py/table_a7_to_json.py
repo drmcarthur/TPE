@@ -20,7 +20,6 @@ def execute():
             T = []
             rho = []
             cp = []
-            mu = []
             nu = []
             k = []
             alpha = []
@@ -29,28 +28,31 @@ def execute():
             # Read in all the data from the table
             matName = fID.readline().rstrip('\n')
             tableName = fID.readline().rstrip('\n')
+            meltPt = fID.readline().rstrip('\n')
             tRange = fID.readline().rstrip('\n')
             tRange = tRange.split()
+
+
             tMin = tRange[0]
             tMax = tRange[1]
+
             for line in fID:
                 line = line.split()
                 T.append(line[0])
                 rho.append(line[1])
                 cp.append(line[2])
-                mu.append(line[3])
-                nu.append(line[4])
-                k.append(line[5])
-                alpha.append(line[6])
-                pr.append(line[7])
+                nu.append(line[3])
+                k.append(line[4])
+                alpha.append(line[5])
+                pr.append(line[6])
         # Prepare for loop
         i = 0
-        
+
         # Create strings so we can convert all properties in one loop instead of multiple loops
         tstring = ""
+        meltptstring = "" + meltPt
         rhostring = ""
         cpstring = ""
-        mustring = ""
         nustring = ""
         kstring = ""
         alphastring = ""
@@ -59,7 +61,6 @@ def execute():
             tstring += temp
             rhostring += rho[i]
             cpstring += cp[i]
-            mustring += mu[i]
             nustring += nu[i]
             kstring += k[i]
             alphastring += alpha[i]
@@ -69,7 +70,6 @@ def execute():
                 tstring += ","
                 rhostring += ","
                 cpstring += ","
-                mustring += ","
                 nustring += ","
                 kstring += ","
                 alphastring += ","
@@ -79,9 +79,10 @@ def execute():
         # Create the JSON string
         json = ""
         json += '{\n\t"table":"' + tableName + '",\n\t"name":"' + matName +\
+                '",\n\t"meltpt":' + meltptstring +\
                 '",\n\t"tMin":' + tMin + ',\n\t"tMax":' + tMax + ',\n\t' +\
                 '"T":[' + tstring + '],\n\t' + '"rho":[' + rhostring + '],\n\t' +\
-                '"cp":[' + cpstring + '],\n\t' + '"mu":[' + mustring + '],\n\t' +\
+                '"cp":[' + cpstring + '],\n\t' +\
                 '"nu":[' + nustring + '],\n\t' + '"k":[' + kstring + '],\n\t' +\
                 '"alpha":[' + alphastring + '],\n\t' + '"pr":[' + prstring + ']\n}'
         
