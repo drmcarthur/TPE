@@ -31,7 +31,7 @@ $( document ).ready(function() {
 $(".material").click(function() {
     //window.alert(this.innerHTML);
     //$("#matSelector").hide();
-    $("#materialText").html('Properties of <em>' + this.innerHTML + '</em><br/>');
+    $("#materialText").html('' + this.innerHTML + '<br/>');
     $("#tempRange").html('T = ' + window[this.dataset.material].tMin + ' - ' +
 			 window[this.dataset.material].tMax + ' K'); 
 });

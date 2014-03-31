@@ -186,6 +186,8 @@ body {
 {
   display:block;
   margin:auto;
+  margin-top:20px;
+  margin-bottom:12px;
 }
 .small-gap{
   display:block;
@@ -210,12 +212,17 @@ body {
   text-align:center;
   font-size:20px;
   color:#555;
-  margin-bottom:8px;
+  margin-bottom:16px;
+  margin-top:15px;
 }
 #tempRange
 {
   font-weight:bold;
   font-size:1.1em;
+}
+#matSelector
+{
+  margin-bottom:5px;
 }
 .dropdown-menu>li>a {
   padding: 6px 20px;
