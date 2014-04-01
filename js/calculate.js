@@ -90,7 +90,7 @@ function addRow() {
 	hfg = blank;
 	
 	//Need to calculate an approximate Beta value (1/T)
-	betaVal = 1 / window[chosenMaterial]["T"];
+	betaVal = 1 / chosenTemp;
 	beta = "&asymp; " + betaVal;
     }
     else if (table == "A5") {
@@ -111,7 +111,12 @@ function addRow() {
 	k = interpolate(fraction,i,window[chosenMaterial]["kf"]);   
 	Pr = interpolate(fraction,i,window[chosenMaterial]["prf"]);
 	mu = 100 * (interpolate(fraction,i,window[chosenMaterial]["muf"])/Math.pow(10,6));
-	beta = 1000 * (interpolate(fraction,i,window[chosenMaterial]["betaf"])/Math.pow(10,6));
+	if (window[chosenMaterial]["betaf"] == NaN) {
+	    beta = blank;
+	}
+	else {
+	   	beta = 1000 * (interpolate(fraction,i,window[chosenMaterial]["betaf"])/Math.pow(10,6)); 
+	}
 	sigma = interpolate(fraction,i,window[chosenMaterial]["sigmaf"]);;
 	hfg = interpolate(fraction,i,window[chosenMaterial]["hfg"]);
 	
