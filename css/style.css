@@ -1,11 +1,10 @@
 /*
- * Base structure
+ * Base structure (Bootstrap Dashboard Example Code)
  */
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
-  min-width:485px;
 }
 
 
@@ -98,11 +97,13 @@ body {
   border-radius: 50%;
 }
 
+/* Additional Code Below = Customized */
+
 #mainHeading {
   color:#999;
   /*height: 50px; */
   padding: 15px 15px;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 30px;
 }
 
@@ -111,9 +112,14 @@ body {
   /*display:none;*/
 }
 
-#dataTable>thead>tr>th{
+#dataTable>thead>tr>th {
   text-align:center;
-  font-size:16px;
+  vertical-align:middle;
+  font-size:12px;
+}
+#dataTable>tbody>tr>td {
+  white-space:nowrap;
+  text-align:center;
 }
 
 /* Allow submenus in dropdown */
@@ -168,49 +174,43 @@ body {
 /*- See more at: http://firdaus.grandexa.com/2013/09/twitter-bootstrap-3-multilevel-dropdown-menu/#sthash.eG4Kcm2p.dpuf */
 
 /* Custom styles */
-.material
-{
+.material {
   cursor:pointer;
 }
 
-.calcSetup
-{
+.calcSetup {
   max-width:350px;
   margin:auto;
 }
 
-#dropdownMenu
-{
+#dropdownMenu {
   width:165px;
   font-size:16px;
   display:block;
   margin:auto;
   margin-top: 7px;
 }
-#temp{
+#tempBox{
   width:165px;
   margin:auto;
 }
-#calc
-{
+#calc {
   display:block;
   margin:auto;
   margin-top:20px;
   margin-bottom:12px;
 }
-.small-gap{
+.small-gap {
   display:block;
   content:" ";
   margin:10px 0px;
 }
 
-.panel-heading
-{
+.panel-heading {
   font-size:16px;
 }
 
-.formText
-{
+.formText {
 
 }
 
