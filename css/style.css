@@ -76,6 +76,7 @@ body {
 }
 
 .page-header {
+  display:block;
   text-align:center;
 }
 /*
