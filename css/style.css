@@ -245,3 +245,7 @@ body {
 #clearTable:active {
   color:#FF4444;
 }
+.selected
+{
+  background-color:#FF9999;
+}

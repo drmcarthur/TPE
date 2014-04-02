@@ -40,6 +40,8 @@ function validate() {
 var chosenMaterial = "";	// Store the currently selected material
 var chosenTemp = 0;		// Store the currently entered temperature
 function addRow() {
+    var p = 5;	// (precision) Number of decimals to display in table
+    
     // Create variables for all of the properties we'll be displaying
     var rho = 0;
     var cp = 0;
@@ -88,10 +90,10 @@ function addRow() {
 			/ Math.pow(10,6);
 	sigma = blank;
 	hfg = blank;
-	
+	beta = blank;
 	//Need to calculate an approximate Beta value (1/T)
-	betaVal = 1 / chosenTemp;
-	beta = "&asymp; " + betaVal;
+	//betaVal = 1 / chosenTemp;
+	//beta = "&asymp; " + betaVal;
     }
     else if (table == "A5") {
 	cp = interpolate(fraction,i,window[chosenMaterial]["cp"]);
@@ -115,7 +117,7 @@ function addRow() {
 	    beta = blank;
 	}
 	else {
-	   	beta = 1000 * (interpolate(fraction,i,window[chosenMaterial]["betaf"])/Math.pow(10,6)); 
+	    beta = 1000 * (interpolate(fraction,i,window[chosenMaterial]["betaf"])/Math.pow(10,6)); 
 	}
 	sigma = interpolate(fraction,i,window[chosenMaterial]["sigmaf"]);;
 	hfg = interpolate(fraction,i,window[chosenMaterial]["hfg"]);
@@ -143,33 +145,33 @@ function addRow() {
 	
 	// Water table has data for fluid and gas, so build separate table rows here
 	// Generate a table row containing the desired material properties
-	var trow = "<tr>";
+	var trow = "<tr class='dataRow'>";
 	trow += "<td data-pname='T'>" + chosenTemp + "</td>";
-	trow += "<td data-pname='material'>" + chosenMaterial + "<sub>fluid</sub></td>";
-	trow += "<td data-pname='rho'>" + rho + "</td>";
-	trow += "<td data-pname='cp'>" + cp + "</td>";
-	trow += "<td data-pname='mu'>" + mu + "</td>";
-	trow += "<td data-pname='nu'>" + nu + "</td>";
-	trow += "<td data-pname='k'>" + k + "</td>";
-	trow += "<td data-pname='alpha'>" + alpha + "</td>";
-	trow += "<td data-pname='Pr'>" + Pr + "</td>";
-	trow += "<td data-pname='beta'>" + beta + "</td>";
-	trow += "<td data-pname='sigma'>" + sigmag + "</td>";
-	trow += "<td data-pname='hfg'>" + hfg + "</td>";
+	trow += "<td data-pname='material'>" + window[chosenMaterial].name + "<sub>fluid</sub></td>";
+	trow += "<td data-pname='rho'>" + formatNum(rho) + "</td>";
+	trow += "<td data-pname='cp'>" + formatNum(cp) + "</td>";
+	trow += "<td data-pname='mu'>" + formatNum(mu) + "</td>";
+	trow += "<td data-pname='nu'>" + formatNum(nu) + "</td>";
+	trow += "<td data-pname='k'>" + formatNum(k) + "</td>";
+	trow += "<td data-pname='alpha'>" + formatNum(alpha) + "</td>";
+	trow += "<td data-pname='Pr'>" + formatNum(Pr) + "</td>";
+	trow += "<td data-pname='beta'>" + formatNum(beta) + "</td>";
+	trow += "<td data-pname='sigma'>" + formatNum(sigmag) + "</td>";
+	trow += "<td data-pname='hfg'>" + formatNum(hfg) + "</td>";
 	trow += "</tr>"
-	var trow2 = "<tr>";
+	var trow2 = "<tr class='dataRow'>";
 	trow2 += "<td data-pname='T'>" + chosenTemp + "</td>";
 	trow2 += "<td data-pname='material'>" + chosenMaterial + "<sub>gas</sub></td>";
-	trow2 += "<td data-pname='rho'>" + rhog + "</td>";
-	trow2 += "<td data-pname='cp'>" + cpg + "</td>";
-	trow2 += "<td data-pname='mu'>" + mug + "</td>";
-	trow2 += "<td data-pname='nu'>" + nug + "</td>";
-	trow2 += "<td data-pname='k'>" + kg + "</td>";
-	trow2 += "<td data-pname='alpha'>" + alphag + "</td>";
-	trow2 += "<td data-pname='Pr'>" + Prg + "</td>";
-	trow2 += "<td data-pname='beta'>" + betag + "</td>";
-	trow2 += "<td data-pname='sigma'>" + sigmag + "</td>";
-	trow2 += "<td data-pname='hfg'>" + hfg + "</td>";
+	trow2 += "<td data-pname='rho'>" + formatNum(rhog) + "</td>";
+	trow2 += "<td data-pname='cp'>" + formatNum(cpg) + "</td>";
+	trow2 += "<td data-pname='mu'>" + formatNum(mug) + "</td>";
+	trow2 += "<td data-pname='nu'>" + formatNum(nug) + "</td>";
+	trow2 += "<td data-pname='k'>" + formatNum(kg) + "</td>";
+	trow2 += "<td data-pname='alpha'>" + formatNum(alphag) + "</td>";
+	trow2 += "<td data-pname='Pr'>" + formatNum(Prg) + "</td>";
+	trow2 += "<td data-pname='beta'>" + formatNum(betag) + "</td>";
+	trow2 += "<td data-pname='sigma'>" + formatNum(sigmag) + "</td>";
+	trow2 += "<td data-pname='hfg'>" + formatNum(hfg) + "</td>";
 	trow2 += "</tr>"
 	$("#dataTableBody").append(trow);
 	$("#dataTableBody").append(trow2);
@@ -191,19 +193,19 @@ function addRow() {
     }
     
     // Generate a table row containing the desired material properties
-    var trow = "<tr>";
+    var trow = "<tr class='dataRow'>";
 	trow += "<td data-pname='T'>" + chosenTemp + "</td>";
-	trow += "<td data-pname='material'>" + chosenMaterial + "</td>";
-	trow += "<td data-pname='rho'>" + rho + "</td>";
-	trow += "<td data-pname='cp'>" + cp + "</td>";
-	trow += "<td data-pname='mu'>" + mu + "</td>";
-	trow += "<td data-pname='nu'>" + nu + "</td>";
-	trow += "<td data-pname='k'>" + k + "</td>";
-	trow += "<td data-pname='alpha'>" + alpha + "</td>";
-	trow += "<td data-pname='Pr'>" + Pr + "</td>";
-	trow += "<td data-pname='beta'>" + beta + "</td>";
-	trow += "<td data-pname='sigma'>" + sigma + "</td>";
-	trow += "<td data-pname='hfg'>" + hfg + "</td>";
+	trow += "<td data-pname='material'>" + window[chosenMaterial].name + "</td>";
+	trow += "<td data-pname='rho'>" + formatNum(rho) + "</td>";
+	trow += "<td data-pname='cp'>" + formatNum(cp) + "</td>";
+	trow += "<td data-pname='mu'>" + formatNum(mu) + "</td>";
+	trow += "<td data-pname='nu'>" + formatNum(nu) + "</td>";
+	trow += "<td data-pname='k'>" + formatNum(k) + "</td>";
+	trow += "<td data-pname='alpha'>" + formatNum(alpha) + "</td>";
+	trow += "<td data-pname='Pr'>" + formatNum(Pr) + "</td>";
+	trow += "<td data-pname='beta'>" + formatNum(beta) + "</td>";
+	trow += "<td data-pname='sigma'>" + formatNum(sigma) + "</td>";
+	trow += "<td data-pname='hfg'>" + formatNum(hfg) + "</td>";
     trow += "</tr>"
     $("#dataTableBody").append(trow);
     /**/
@@ -235,7 +237,8 @@ $(".material").click(function() {
     $("#materialText").html('' + this.innerHTML + '<br/>');
     $("#tempRange").html('T = ' + window[this.dataset.material].tMin + ' - ' +
 			 window[this.dataset.material].tMax + ' K');
-    chosenMaterial = window[this.dataset.material].name;
+    chosenMaterial = window[this.dataset.material].id;
+    $(this).parent().click();
 });
 
 // Clear selected and calculated properties
@@ -256,3 +259,41 @@ function interpolate(fraction, index, array) {
     }
     return fraction * (array[index] - array[index-1]) + array[index-1];
 }
+
+function formatNum(num) {
+    if (num == "---" || num == Infinity) {
+	return num;	// Do nothing
+    }
+    else if (num == NaN) {
+	return "---";
+    }
+    else {
+	//return +(Math.round(num + "e+4")  + "e-4");
+	return num.toExponential(3);
+    }
+}
+
+// Function for when user selects a material from the dropdown
+$(".dataRow").click(function() {
+    // Display the selected material, along with the valid temperature range
+    $(this).addClass("selected");
+});
+
+// Function to switch view from property calculator to
+$("#tablesButton").click(function() {
+    // Display the selected material, along with the valid temperature range
+    $(".calcSetup").hide();
+    //$(".panel").hide();
+    $(".page-header").html("Property Tables");
+    $(".nav-sidebar").children(".active").removeClass("active");
+    $(this).parent().addClass("active");
+});
+// Function to switch view from property calculator to
+$("#propCalcButton").click(function() {
+    // Display the selected material, along with the valid temperature range
+    $(".calcSetup").show();
+    $(".panel").show();
+    $(".page-header").html("Calculate Properties");
+    $(".nav-sidebar").children(".active").removeClass("active");
+    $(this).parent().addClass("active");
+});
