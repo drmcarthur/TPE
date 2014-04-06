@@ -379,5 +379,8 @@ body {
   font-weight:normal;
   font-size:14px;
 }
+#progDescription ol {
+  margin-bottom:15px;
+}
 #aboutText .modal-content {
 }
