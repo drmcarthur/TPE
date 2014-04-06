@@ -297,12 +297,74 @@ function fillAppendixTables() {
 			    "<span class='target' id='" + data.id + "'>&nbsp;</span>" +
 			    "<span class='backToTop'>Top</span>" + data.name + "</td></tr>";
 	    $(tableName).append(labelRow);
-	    $(tableName).append(propLabels); 	// Label the property columns
 	    
 	if (data.id == "WATER") {
-	    //IGNORE
+	    // Set up the property labels for the water table
+	    var propLabels = "<tr class='propLabel'><th>Temp<br/>(K)</th>" +
+			     "<th>&rho;<sub>f</sub><br/>(kg/m<sup>3</sup>)</th>" +
+			     "<th>&rho;<sub>g</sub><br/>(kg/m<sup>3</sup>)</th>" +
+			     "<th>c<sub>p</sub><sub>f</sub><br/>(J/kg&sdot;K)</th>" +
+			     "<th>c<sub>p</sub><sub>g</sub><br/>(J/kg&sdot;K)</th>" +
+			     "<th>&mu;<sub>f</sub><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
+			     "<th>&mu;<sub>g</sub><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
+			     "<th>&nu;<sub>f</sub><br/>(m<sup>2</sup>/s)</th>" +
+			     "<th>&nu;<sub>g</sub><br/>(m<sup>2</sup>/s)</th>" +
+			     "<th>k<sub>f</sub><br/>(W/m&sdot;K)</th>" +
+			     "<th>k<sub>g</sub><br/>(W/m&sdot;K)</th>" +
+			     "<th>&alpha;<sub>f</sub><br/>(m<sup>2</sup>/s)</th>" +
+			     "<th>&alpha;<sub>g</sub><br/>(m<sup>2</sup>/s)</th>" +
+			     "<th>Pr<sub>f</sub></th>" +
+			     "<th>Pr<sub>g</sub></th>" +
+			     "<th>&beta;<sub>f</sub><br/>(K<sup>-1</sup>)</th>" +
+			     "<th>&sigma;<sub>f</sub><br/>(N/m)</th>" +
+			     "<th>h<sub>fg</sub><br/>(J/kg)</th>" +
+			     "</tr>";
+	    	$(tableName).append(propLabels); 	// Label the property columns
+
+		// Gas properties
+		var rhof = 0;
+	        var rhog = 0;
+		var cpg = 0;
+		var mug = 0;
+		var nug = 0;
+		var alphaf = 0;
+		var alphag = 0;
+		var Prg = 0;
+		
+	    // Iterate through all the temperatures and display the properties
+	    for(i in data.T) {
+		// Generate a table row containing the desired material properties
+		var trow = "<tr class='propRow'>";
+		    trow += "<td class='tempCol " + data.id + "_T'>" + data.T[i] + "</td>";
+		    rhof = 1/(data.vf[i]/1000);
+		    rhog = 1/(data.vg[i]/1000);
+		    trow += "<td class='appCol " + data.id + "_rhof'>" + formatNum(rhof) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_rhog'>" + formatNum(rhog) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_cpf'>" + formatNum(data.cpf[i]*1000) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_cpg'>" + formatNum(data.cpg[i]*1000) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_muf'>" + formatNum(data.muf[i]/Math.pow(10,6)) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_mug'>" + formatNum(data.mug[i]/Math.pow(10,6)) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_nuf'>" + formatNum((data.muf[i]/Math.pow(10,6)) * (data.vf[i]/1000)) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_nug'>" + formatNum((data.mug[i]/Math.pow(10,6)) * (data.vg[i]/1000)) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_kf'>" + formatNum(data.kf[i]/1000) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_kg'>" + formatNum(data.kg[i]/1000) + "</td>";
+		    alphaf = (data.kf[i]/1000)/((rhof)*(data.cpf[i]*1000));
+		    alphag = (data.kg[i]/1000)/((rhog)*(data.cpg[i]*1000));
+		    trow += "<td class='appCol " + data.id + "_alphaf'>" + formatNum(alphaf) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_alphag'>" + formatNum(alphag) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_Prf'>" + formatNum(data.prf[i]) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_Prg'>" + formatNum(data.prg[i]) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_betaf'>" + formatNum(data.betaf[i]/Math.pow(10,6)) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_sigmaf'>" + formatNum(data.sigmaf[i]/1000) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_hfg'>" + formatNum(data.hfg[i]*1000) + "</td>";
+		    trow += "</tr>";
+		$(tableName).append(trow);
+	    }
 	}
 	else {
+	    
+	    $(tableName).append(propLabels); 	// Label the property columns
+
 	    // Iterate through all the temperatures and display the properties
 	    for(i in data.T) {
 		// Generate a table row containing the desired material properties
