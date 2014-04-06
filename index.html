@@ -44,7 +44,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a id="about" class="cursor">About</a></li>
             <li><a  class="cursor" href="http://www.et.byu.edu/~vps/ME340/ME340.htm">ME EN 340</a></li>
-            <li><a  class="cursor" href="#">Help</a></li>
+            <li><a id="help" class="cursor">Help</a></li>
           </ul>
         </div>
       </div>
@@ -196,7 +196,7 @@
           <div class="modal fade plot" id="aboutText" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
-                <h1 id="progTitle">Thermophysical Property Explorer</h2>
+                <h1 id="progTitle">Thermophysical Property Explorer</h1>
                 <h3 id="progVersion">Version 1.0</h3>
                 <h3 id="progAuthor">Written by Daniel McArthur</h3>
                 <h3 id="progDate">April 2014</h3>
@@ -220,7 +220,7 @@
                       <li>Table format displays multiple calculated properties simultaneously</li>
                       <li>Animated charts compare properties for different materials</li>
                       <li>Animated plots help visualize how properties change with temperature</li>
-                      <li>Pure HTML/Javascript; code can run on a server, or locally on any OS</li>
+                      <li>Pure HTML/Javascript; code can run on a server, or locally on any OS (including mobile devices)</li>
                       <li>Properties listed in standard SI units, to avoid computational errors</li>
                       <li>All data stored in JSON so it can be updated/edited easily</li>
                       </ul>
@@ -230,6 +230,45 @@
               </div>
             </div>
           </div>
+        
+        <!-- Small modal (Help) -->
+          <div class="modal fade plot" id="helpText" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel2" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <h1 id="helpTitle">Instructions</h1>
+                <div id="progDescription">
+                    <b>Calculating Properties:</b>
+                    <ol>
+                      <li>Select a material from the dropdown</li>
+                      <li>Enter a temperature</li>
+                      <li>Click 'Calculate' or press the Enter key</li>
+                      <li>A new row is added to the table with the desired properties</li>
+                    </ol>
+                    <b>Graphing Properties:</b>
+                    <ol>
+                      <li>Hover the mouse over the column of the material property to be graphed</li>
+                      <li>Click the left mouse button and a graph will appear comparing the listed materials/temperatures</li>
+                      <li>To exit the graph, press Escape, OR click outside the plot area (the white box)</li>
+                    </ol>
+                    <b>Removing lines from the table:</b>
+                    <ol>
+                      <li>Hover the mouse over the temperature column of the row to be deleted</li>
+                      <li>Click the left mouse button and the row will be removed from the table</li>
+                      <li>To remove all lines, click the word 'Clear' at the top right corner of the table</li>
+                    </ol>
+                    <b>Viewing the Complete Thermophysical Property Tables:</b>
+                    <ol>
+                      <li>Click the Tables link on the upper left portion of the screen</li>
+                      <li>Click on a table name or material name to be taken to the corresponding table, OR, scroll down to view the tables</li>
+                      <li>To return to the Property Calculator, click the 'Property Calculator' link on the upper left portion of the screen</li>
+                    </ol>
+                    <p style="color:#FF6666;"><em>**Note: Depending on screen width, it may be necessary to scroll left/right
+                    inside the property table to view all of the properties.</em></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        
           
         </div>   <!-- end main content -->  
       </div>

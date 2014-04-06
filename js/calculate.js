@@ -635,10 +635,19 @@ $('.appendixTable').on('click', '.backToTop', function(){
     window.location.hash = "TOP";
 });
 
-// Clear selected and calculated properties
+// Show About pop-up
 $("#about").click(function() {
     // Display the 'About' information
     $('#aboutText').modal({
+	keyboard: true,
+	show: true
+    });
+});
+
+// Show Help pop-up
+$("#help").click(function() {
+    // Display the 'Help' information
+    $('#helpText').modal({
 	keyboard: true,
 	show: true
     });
