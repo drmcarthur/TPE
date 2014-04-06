@@ -67,8 +67,8 @@ body {
 }
 @media (min-width: 768px) {
   .main {
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 0px;
+    padding-left: 0px;
   }
 }
 .main .page-header {
@@ -104,7 +104,7 @@ body {
   color:#999;
   /*height: 50px; */
   padding: 15px 15px;
-  font-size: 22px;
+  font-size:20px;
   line-height: 30px;
 }
 
@@ -113,12 +113,12 @@ body {
   /*display:none;*/
 }
 
-#dataTable>thead>tr>th {
+#dataTable>thead>tr>th, .propTable>thead>tr>th{
   text-align:center;
   vertical-align:middle;
   font-size:12px;
 }
-#dataTable>tbody>tr>td {
+#dataTable>tbody>tr>td, .propTable>tbody>tr>td{
   white-space:nowrap;
   text-align:center;
 }
@@ -208,7 +208,23 @@ body {
 }
 
 .panel-heading {
-  font-size:16px;
+  font-size:20px;
+  text-align:center;
+  padding:3px 0px;
+}
+
+.panel {
+  margin-right:6%;
+}
+
+.table-responsive {
+  overflow:scroll;
+}
+
+.sidebar {
+  max-width:145px;
+  padding-right:8px;
+  padding-left:8px;
 }
 
 .formText {
@@ -235,18 +251,33 @@ body {
   padding: 6px 20px;
   font-size:16px;
 }
-#clearTable {
+#clearTable, .backToTop {
   float:right;
   cursor:pointer;
   color:#428BCA;
+  font-size:16px;
+  padding-top:3px;
+  padding-right:10px;
 }
-#clearTable:hover {
+#clearTable:hover, .backToTop:hover {
   text-decoration:underline;
 }
-#clearTable:active {
+#clearTable:active, .backToTop:active {
   color:#FF4444;
 }
 .selected
 {
   background-color:#FF9999;
+}
+.active>a:hover {
+  background-color:#62abea !important; 
+}
+.matLabel {
+  text-align:center;
+  font-style:italic;
+  font-weight:bold;
+  font-size:18px;
+}
+.appendixTable {
+  margin-top:50px; 
 }
