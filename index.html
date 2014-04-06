@@ -42,6 +42,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            <li><a id="propCalcButton" class="cursor">Calculator</a></li>
+            <li><a id="tablesButton" class="cursor">Tables</a></li>
             <li><a id="about" class="cursor">About</a></li>
             <li><a  class="cursor" href="http://www.et.byu.edu/~vps/ME340/ME340.htm">ME EN 340</a></li>
             <li><a id="help" class="cursor">Help</a></li>
@@ -53,14 +55,14 @@
     <div class="container-fluid">
       <div class="row">
         
-        <!-- Side Navigation Bar -->
+        <!-- Side Navigation Bar 
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#" id="propCalcButton">Property Calculator</a></li>
             <li><a href="#" id="tablesButton">Tables</a></li>
           </ul>
         </div>
-        
+        -->
         <!-- Main Content -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header" href="#TOP">Calculate Properties</h1>
@@ -121,11 +123,9 @@
               <input type="number" id="temp" class="form-control" placeholder="Temperature">
               <span class="input-group-addon"> K</span>
             </div>
-            <br class="small-gap" />
             <button type="submit" class="btn btn-primary" id="calc" >Calculate</button>
             
           </div>
-            <br class="small-gap"/>
             
           <!-- Display the calculated properties in a table -->
           <div class="panel panel-success" id="dataPanel">

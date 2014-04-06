@@ -51,7 +51,7 @@ function validate() {
     temp = document.getElementById("temp").value;
     
     // Validate the input temperature
-    if (temp == "") {
+    if (temp == "") { // Since this is a "number" type input, invalid input results in temp == ""
 	window.alert("Invalid temperature value (not a number)" +
 		     "\n\nPlease enter a valid number.");
 	return false;
@@ -79,10 +79,19 @@ function validate() {
 // Add a row to the data table showing the desired material properties
 var chosenMaterial = "";	// Store the currently selected material
 var chosenTemp = 0;		// Store the currently entered temperature
-
+var chosenTemps = [];		// History of entered temps (to prevent duplicates)
+var chosenMaterials = [];	// History of chosen materials (to prevent duplicates)
 function addRow() {
+    
     // Clear the input temperature
     document.getElementById("temp").value = "";
+    for(x in chosenTemps) {
+	if (chosenTemp == chosenTemps[x] &&
+	    chosenMaterial == chosenMaterials[x]) {
+	    //window.alert("Duplicate!");
+	    return;
+	}
+    }
 
     var p = 5;	// (precision) Number of decimals to display in table
     
@@ -245,6 +254,8 @@ function addRow() {
 	trow += "<td class='calcCol hfg'>" + formatNum(hfg) + "</td>";
 	trow += "</tr>";
     $("#dataTableBody").append(trow);
+    chosenMaterials.push(chosenMaterial);
+    chosenTemps.push(chosenTemp);
 }
 
 // Function to interpolate a value from a table
@@ -300,25 +311,25 @@ function fillAppendixTables() {
 	    
 	if (data.id == "WATER") {
 	    // Set up the property labels for the water table
-	    var propLabels = "<tr class='propLabel'><th>Temp<br/>(K)</th>" +
-			     "<th>&rho;<sub>f</sub><br/>(kg/m<sup>3</sup>)</th>" +
-			     "<th>&rho;<sub>g</sub><br/>(kg/m<sup>3</sup>)</th>" +
-			     "<th>c<sub>p</sub><sub>f</sub><br/>(J/kg&sdot;K)</th>" +
-			     "<th>c<sub>p</sub><sub>g</sub><br/>(J/kg&sdot;K)</th>" +
-			     "<th>&mu;<sub>f</sub><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
-			     "<th>&mu;<sub>g</sub><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
-			     "<th>&nu;<sub>f</sub><br/>(m<sup>2</sup>/s)</th>" +
-			     "<th>&nu;<sub>g</sub><br/>(m<sup>2</sup>/s)</th>" +
-			     "<th>k<sub>f</sub><br/>(W/m&sdot;K)</th>" +
-			     "<th>k<sub>g</sub><br/>(W/m&sdot;K)</th>" +
-			     "<th>&alpha;<sub>f</sub><br/>(m<sup>2</sup>/s)</th>" +
-			     "<th>&alpha;<sub>g</sub><br/>(m<sup>2</sup>/s)</th>" +
-			     "<th>Pr<sub>f</sub></th>" +
-			     "<th>Pr<sub>g</sub></th>" +
-			     "<th>&beta;<sub>f</sub><br/>(K<sup>-1</sup>)</th>" +
-			     "<th>&sigma;<sub>f</sub><br/>(N/m)</th>" +
-			     "<th>h<sub>fg</sub><br/>(J/kg)</th>" +
-			     "</tr>";
+	    propLabels = "<tr class='propLabel'><th>Temp<br/>(K)</th>" +
+			    "<th>&rho;<sub>f</sub><br/>(kg/m<sup>3</sup>)</th>" +
+			    "<th>&rho;<sub>g</sub><br/>(kg/m<sup>3</sup>)</th>" +
+			    "<th>c<sub>p</sub><sub>f</sub><br/>(J/kg&sdot;K)</th>" +
+			    "<th>c<sub>p</sub><sub>g</sub><br/>(J/kg&sdot;K)</th>" +
+			    "<th>&mu;<sub>f</sub><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
+			    "<th>&mu;<sub>g</sub><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
+			    "<th>&nu;<sub>f</sub><br/>(m<sup>2</sup>/s)</th>" +
+			    "<th>&nu;<sub>g</sub><br/>(m<sup>2</sup>/s)</th>" +
+			    "<th>k<sub>f</sub><br/>(W/m&sdot;K)</th>" +
+			    "<th>k<sub>g</sub><br/>(W/m&sdot;K)</th>" +
+			    "<th>&alpha;<sub>f</sub><br/>(m<sup>2</sup>/s)</th>" +
+			    "<th>&alpha;<sub>g</sub><br/>(m<sup>2</sup>/s)</th>" +
+			    "<th>Pr<sub>f</sub></th>" +
+			    "<th>Pr<sub>g</sub></th>" +
+			    "<th>&beta;<sub>f</sub><br/>(K<sup>-1</sup>)</th>" +
+			    "<th>&sigma;<sub>f</sub><br/>(N/m)</th>" +
+			    "<th>h<sub>fg</sub><br/>(J/kg)</th>" +
+			    "</tr>";
 	    	$(tableName).append(propLabels); 	// Label the property columns
 
 		// Gas properties
@@ -362,7 +373,6 @@ function fillAppendixTables() {
 	    }
 	}
 	else {
-	    
 	    $(tableName).append(propLabels); 	// Label the property columns
 
 	    // Iterate through all the temperatures and display the properties
@@ -409,15 +419,7 @@ function materialSelections() {
 	var tableName = "#" + String(mat.table).toLowerCase() + "_selections";
 	var selection = "<li><a href='#" + mat.id + "'>" + mat.name + "</a></li>";
 	$(tableName).append(selection);
-	
     }
-//    var selections = "<ul>";
-//    +
-//			"<li></li>" +
-//			"<li></li>" +
-//			"<li></li>" +
-//		     "</ul>";
-//    $("#selectMaterial").html(selections);
 }
 /********************************************************
  *	    Document ready and keypress events
@@ -447,8 +449,6 @@ var classes = this.className.split(/\s+/);
 $('#dataPanel').on('click', '.danger', function() {
     $(this).remove();
 });
-
-
 
 // PLOTTING VARIABLES
 var tempArray = [];	// For plotting property values (stores temperatures)
@@ -482,6 +482,8 @@ $('.appendixTable').on('mouseleave', '.appCol', function() {
     // Clear the data arrays for storing
     propArray = [];
     tempArray = [];
+    matNameArray = [];
+    propName = "";
 });
 
 // When a row of the appendix table is clicked, plot the corresponding property values
@@ -564,11 +566,11 @@ function plotCalculated() {
 	keyboard: true,
 	show: true
     });
+
 }
 
 // Plot property values vs. temperature from the appendix tables
 function plotAppendix() {
-    
     // Generate the series objects
     sObjects = [];
     var points = [];
@@ -608,6 +610,12 @@ function plotAppendix() {
 	keyboard: true,
 	show: true
     });
+    
+    sObjects = [];
+    propName = ""
+    tempArray = [];
+    propArray = [];
+    matNameArray = [];
 }
 
 // Capture the ENTER key for calculating
@@ -639,7 +647,7 @@ $("#tablesButton").click(function() {
     $(".calcSetup").hide();
     //$(".panel").hide();
     $(".page-header").html("Property Tables");
-    $(".nav-sidebar").children(".active").removeClass("active");
+    $(".nav").children(".active").removeClass("active");
     $(this).parent().addClass("active");
     $("#clearTable").hide();
     $("#dataPanel").hide();
@@ -653,7 +661,7 @@ $("#propCalcButton").click(function() {
     $(".calcSetup").show();
     $(".panel").show();
     $(".page-header").html("Calculate Properties");
-    $(".nav-sidebar").children(".active").removeClass("active");
+    $(".nav").children(".active").removeClass("active");
     $(this).parent().addClass("active");
     $("#clearTable").show();
     $("#dataPanel").show("");
@@ -663,8 +671,10 @@ $("#propCalcButton").click(function() {
 
 // Function for when user selects a material from the dropdown
 $("#calc").click(function() {
-    if( validate() ) {
-	addRow();
+    if( document.getElementById("temp").value != "" ) {
+	if (validate()) {
+	    addRow();
+	}
     }
 });
 
