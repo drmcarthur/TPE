@@ -42,9 +42,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">About</a></li>
-            <li><a href="http://www.et.byu.edu/~vps/ME340/ME340.htm">ME EN 340</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a id="about" class="cursor">About</a></li>
+            <li><a  class="cursor" href="http://www.et.byu.edu/~vps/ME340/ME340.htm">ME EN 340</a></li>
+            <li><a  class="cursor" href="#">Help</a></li>
           </ul>
         </div>
       </div>
@@ -132,112 +132,67 @@
             <div class="panel-heading">Material Properties<span id="clearTable">Clear</span></div>
             <div class="table-responsive">
               <table id="dataTable" class="table table-bordered table-striped">
-                <tbody id="dataTableBody">
-                </tbody>
               </table>
             </div>
           </div>
           
-          <!-- Display the Tables -->
+          <!-- Display the Appendix Tables -->
+          
+          <!-- Option to click on specific material -->
+          <div id="selectMaterial">
+            <ul id="a4_selections" class="selectList"><a href="#TA4">Table A.4</a><hr/></ul>
+            <ul id="a5_selections" class="selectList"><a href="#TA5">Table A.5</a><hr/></ul>
+            <ul id="a6_selections" class="selectList"><a href="#TA6">Table A.6</a><hr/></ul>
+            <ul id="a7_selections" class="selectList"><a href="#TA7">Table A.7</a><hr/></ul>
+          </div>
           <div class="panel panel-success appendixTable">
-            <div class="panel-heading">Table A.4<span class="backToTop">Top</span></div>
+            <div class="panel-heading"><span class='target' id='TA4'>&nbsp;</span>Table A.4</div>
             <div class="table-responsive">
               <table id="table_a4" class="table table-bordered table-striped propTable">
-                <thead>
-                  <tr>
-                    <th>Temp<br/>(K)</th>
-                    <th>&rho;<br/>(kg/m<sup>3</sup>)</th>
-                    <th>c<sub>p</sub><br/>(kJ/kg&sdot;K)</th>
-                    <th>&mu;&sdot;10<sup>2</sup><br/>(N&sdot;s/m<sup>2</sup>)</th>
-                    <th>&nu;&sdot;10<sup>6</sup><br/>(m<sup>2</sup>/s)</th>
-                    <th>k&sdot;10<sup>3</sup><br/>(W/m&sdot;K)</th>
-                    <th>&alpha;&sdot;10<sup>7</sup><br/>(m<sup>2</sup>/s)</th>
-                    <th>Pr</th>
-                    <th>&beta;&sdot;10<sup>3</sup><br/>(K<sup>-1</sup>)</th>
-                    <th>&sigma;&sdot;10<sup>3</sup><br/>(N/m)</th>
-                    <th>h<sub>fg</sub><br/>(kJ/kg)</th>
-                  </tr>
-                </thead>
                 <tbody id="table_a4_body">
                 </tbody>
               </table>
             </div>
           </div>
           <div class="panel panel-success appendixTable">
-            <div class="panel-heading">Table A.5<span class="backToTop">Top</span></div>
+            <div class="panel-heading"><span class='target' id='TA5'>&nbsp;</span>Table A.5</div>
             <div class="table-responsive">
               <table id="table_a5" class="table table-bordered table-striped propTable">
-                <thead>
-                  <tr>
-                    <th>Temp<br/>(K)</th>
-                    <th>&rho;<br/>(kg/m<sup>3</sup>)</th>
-                    <th>c<sub>p</sub><br/>(kJ/kg&sdot;K)</th>
-                    <th>&mu;&sdot;10<sup>2</sup><br/>(N&sdot;s/m<sup>2</sup>)</th>
-                    <th>&nu;&sdot;10<sup>6</sup><br/>(m<sup>2</sup>/s)</th>
-                    <th>k&sdot;10<sup>3</sup><br/>(W/m&sdot;K)</th>
-                    <th>&alpha;&sdot;10<sup>7</sup><br/>(m<sup>2</sup>/s)</th>
-                    <th>Pr</th>
-                    <th>&beta;&sdot;10<sup>3</sup><br/>(K<sup>-1</sup>)</th>
-                    <th>&sigma;&sdot;10<sup>3</sup><br/>(N/m)</th>
-                    <th>h<sub>fg</sub><br/>(kJ/kg)</th>
-                  </tr>
-                </thead>
                 <tbody id="table_a5_body">
                 </tbody>
               </table>
             </div>
           </div>
           <div class="panel panel-success appendixTable">
-            <div class="panel-heading">Table A.6<span class="backToTop">Top</span></div>
+            <div class="panel-heading"><span class='target' id='TA6'>&nbsp;</span>Table A.6</div>
             <div class="table-responsive">
               <table id="table_a6" class="table table-bordered table-striped propTable">
-                <thead>
-                  <tr>
-                    <th>Temp<br/>(K)</th>
-                    <th>&rho;<br/>(kg/m<sup>3</sup>)</th>
-                    <th>c<sub>p</sub><br/>(kJ/kg&sdot;K)</th>
-                    <th>&mu;&sdot;10<sup>2</sup><br/>(N&sdot;s/m<sup>2</sup>)</th>
-                    <th>&nu;&sdot;10<sup>6</sup><br/>(m<sup>2</sup>/s)</th>
-                    <th>k&sdot;10<sup>3</sup><br/>(W/m&sdot;K)</th>
-                    <th>&alpha;&sdot;10<sup>7</sup><br/>(m<sup>2</sup>/s)</th>
-                    <th>Pr</th>
-                    <th>&beta;&sdot;10<sup>3</sup><br/>(K<sup>-1</sup>)</th>
-                    <th>&sigma;&sdot;10<sup>3</sup><br/>(N/m)</th>
-                    <th>h<sub>fg</sub><br/>(kJ/kg)</th>
-                  </tr>
-                </thead>
                 <tbody id="table_a6_body">
                 </tbody>
               </table>
             </div>
           </div>
           <div class="panel panel-success appendixTable">
-            <div class="panel-heading">Table A.7<span class="backToTop">Top</span></div>
+            <div class="panel-heading"><span class='target' id='TA7'>&nbsp;</span>Table A.7</div>
             <div class="table-responsive">
               <table id="table_a7" class="table table-bordered table-striped propTable">
-                <thead>
-                  <tr>
-                    <th>Temp<br/>(K)</th>
-                    <th>&rho;<br/>(kg/m<sup>3</sup>)</th>
-                    <th>c<sub>p</sub><br/>(kJ/kg&sdot;K)</th>
-                    <th>&mu;&sdot;10<sup>2</sup><br/>(N&sdot;s/m<sup>2</sup>)</th>
-                    <th>&nu;&sdot;10<sup>6</sup><br/>(m<sup>2</sup>/s)</th>
-                    <th>k&sdot;10<sup>3</sup><br/>(W/m&sdot;K)</th>
-                    <th>&alpha;&sdot;10<sup>7</sup><br/>(m<sup>2</sup>/s)</th>
-                    <th>Pr</th>
-                    <th>&beta;&sdot;10<sup>3</sup><br/>(K<sup>-1</sup>)</th>
-                    <th>&sigma;&sdot;10<sup>3</sup><br/>(N/m)</th>
-                    <th>h<sub>fg</sub><br/>(kJ/kg)</th>
-                  </tr>
-                </thead>
                 <tbody id="table_a7_body">
                 </tbody>
               </table>
             </div>
           </div>
           
-      </div>     
-        </div>
+          <!-- Large modal (About) -->
+          <div class="modal fade plot" id="comparePlot" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <!-- Show a plot of the material properties displayed... -->
+                <div id="plotContainer" style="width:75%; height:80%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>   <!-- end main content -->  
+      </div>
     </div>
 
     <!-- Bootstrap core JavaScript
@@ -245,6 +200,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/highcharts.js"></script>
     <script src="js/tables.js"></script>
     <script src="js/calculate.js"></script>
   </body>

@@ -112,16 +112,17 @@ body {
 {
   /*display:none;*/
 }
-
-#dataTable>thead>tr>th, .propTable>thead>tr>th{
-  text-align:center;
-  vertical-align:middle;
-  font-size:12px;
-}
-#dataTable>tbody>tr>td, .propTable>tbody>tr>td{
+#dataTable>tbody>tr>td, .propTable>tbody>tr>td, .propLabel>td{
   white-space:nowrap;
   text-align:center;
+  border:1px solid #ddd;
 }
+#dataTable>thead>tr>th, .propTable>thead>tr>th, .propLabel>th{
+  text-align:center;
+  vertical-align:middle !important;
+  font-size:12px;
+}
+
 
 /* Allow submenus in dropdown */
 .dropdown-submenu{
@@ -258,6 +259,8 @@ body {
   font-size:16px;
   padding-top:3px;
   padding-right:10px;
+  font-style: normal;
+  font-weight: normal;
 }
 #clearTable:hover, .backToTop:hover {
   text-decoration:underline;
@@ -280,4 +283,51 @@ body {
 }
 .appendixTable {
   margin-top:50px; 
+}
+#selectMaterial{
+  width:100%;
+  text-align:center;
+  margin-bottom:-20px;
+}
+.selectList {
+  vertical-align:top;
+  padding-left:20px;
+  padding-right:20px;
+  display:inline-block;
+  font-size:18px;
+  font-weight:bold;
+}
+.selectList>a {
+  color:#000;
+}
+.selectList>a:hover {
+  text-decoration:underline;
+}
+.selectList>li {
+  font-size:14px;
+  text-align:left;
+  text-decoration:none !important;
+  list-style-type:none;
+}
+
+.selectList>li>a:hover {
+  color:#62abea !important;
+}
+.selectList>li>a:active {
+  color:#FF4444 !important;
+}
+
+.selectList>hr {
+  border-color:#ddd;
+  margin:0px;
+  padding-bottom:8px;
+}
+.target {
+  padding-top:60px;
+  margin-top:-60px;
+  width:1px;
+  display:inline-block;
+}
+.cursor {
+  cursor:pointer;
 }

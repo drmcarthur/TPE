@@ -5,8 +5,14 @@
 // Make a common designation for unknown values in tables
 var blank = "---";
 
+// Prepare to access all material properties
+var materials = ["AIR","NH3","CO2","CO","HE","H2","N2",
+		 "O2","STEAM","OIL","EG","GLY","R134A",
+		 "R22","HG","BISMUTH", "LEAD","POTASSIUM",
+		 "SODIUM","NAK45","NAK22","PBBI","WATER"];
+
 // Set up the property labels for all of the appendix tables
-var propLabels = "<tr><th>Temp<br/>(K)</th>" +
+var propLabels = "<tr class='propLabel'><th>Temp<br/>(K)</th>" +
 		 "<th>&rho;<br/>(kg/m<sup>3</sup>)</th>" + 
 		 "<th>c<sub>p</sub><br/>(kJ/kg&sdot;K)</th>" +
 		 "<th>&mu;&sdot;10<sup>2</sup><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
@@ -178,32 +184,32 @@ function addRow() {
 	// Water table has data for fluid and gas, so build separate table rows here
 	// Generate a table row containing the desired material properties
 	var trow = "<tr class='dataRow'>";
-	trow += "<td data-pname='T'>" + chosenTemp + "</td>";
-	trow += "<td data-pname='material'>" + window[chosenMaterial].name + "<sub>fluid</sub></td>";
-	trow += "<td data-pname='rho'>" + formatNum(rho) + "</td>";
-	trow += "<td data-pname='cp'>" + formatNum(cp) + "</td>";
-	trow += "<td data-pname='mu'>" + formatNum(mu) + "</td>";
-	trow += "<td data-pname='nu'>" + formatNum(nu) + "</td>";
-	trow += "<td data-pname='k'>" + formatNum(k) + "</td>";
-	trow += "<td data-pname='alpha'>" + formatNum(alpha) + "</td>";
-	trow += "<td data-pname='Pr'>" + formatNum(Pr) + "</td>";
-	trow += "<td data-pname='beta'>" + formatNum(beta) + "</td>";
-	trow += "<td data-pname='sigma'>" + formatNum(sigmag) + "</td>";
-	trow += "<td data-pname='hfg'>" + formatNum(hfg) + "</td>";
+	trow += "<td class='T'>" + chosenTemp + "</td>";
+	trow += "<td class='calcCol matName'>" + window[chosenMaterial].name + "<sub>fluid</sub></td>";
+	trow += "<td class='calcCol rho'>" + formatNum(rho) + "</td>";
+	trow += "<td class='calcCol cp'>" + formatNum(cp) + "</td>";
+	trow += "<td class='calcCol mu'>" + formatNum(mu) + "</td>";
+	trow += "<td class='calcCol nu'>" + formatNum(nu) + "</td>";
+	trow += "<td class='calcCol k'>" + formatNum(k) + "</td>";
+	trow += "<td class='calcCol alpha'>" + formatNum(alpha) + "</td>";
+	trow += "<td class='calcCol pr'>" + formatNum(Pr) + "</td>";
+	trow += "<td class='calcCol beta'>" + formatNum(beta) + "</td>";
+	trow += "<td class='calcCol sigma'>" + formatNum(sigmag) + "</td>";
+	trow += "<td class='calcCol hfg'>" + formatNum(hfg) + "</td>";
 	trow += "</tr>";
 	var trow2 = "<tr class='dataRow'>";
-	trow2 += "<td data-pname='T'>" + chosenTemp + "</td>";
-	trow2 += "<td data-pname='material'>" + window[chosenMaterial].name 	+ "<sub>gas</sub></td>";
-	trow2 += "<td data-pname='rho'>" + formatNum(rhog) + "</td>";
-	trow2 += "<td data-pname='cp'>" + formatNum(cpg) + "</td>";
-	trow2 += "<td data-pname='mu'>" + formatNum(mug) + "</td>";
-	trow2 += "<td data-pname='nu'>" + formatNum(nug) + "</td>";
-	trow2 += "<td data-pname='k'>" + formatNum(kg) + "</td>";
-	trow2 += "<td data-pname='alpha'>" + formatNum(alphag) + "</td>";
-	trow2 += "<td data-pname='Pr'>" + formatNum(Prg) + "</td>";
-	trow2 += "<td data-pname='beta'>" + formatNum(betag) + "</td>";
-	trow2 += "<td data-pname='sigma'>" + formatNum(sigmag) + "</td>";
-	trow2 += "<td data-pname='hfg'>" + formatNum(hfg) + "</td>";
+	trow2 += "<td class='T'>" + chosenTemp + "</td>";
+	trow2 += "<td class='calcCol matName'>" + window[chosenMaterial].name + "<sub>gas</sub></td>";
+	trow2 += "<td class='calcCol rho'>" + formatNum(rhog) + "</td>";
+	trow2 += "<td class='calcCol cp'>" + formatNum(cpg) + "</td>";
+	trow2 += "<td class='calcCol mu'>" + formatNum(mug) + "</td>";
+	trow2 += "<td class='calcCol nu'>" + formatNum(nug) + "</td>";
+	trow2 += "<td class='calcCol k'>" + formatNum(kg) + "</td>";
+	trow2 += "<td class='calcCol alpha'>" + formatNum(alphag) + "</td>";
+	trow2 += "<td class='calcCol pr'>" + formatNum(Prg) + "</td>";
+	trow2 += "<td class='calcCol beta'>" + formatNum(betag) + "</td>";
+	trow2 += "<td class='calcCol sigma'>" + formatNum(sigmag) + "</td>";
+	trow2 += "<td class='calcCol hfg'>" + formatNum(hfg) + "</td>";
 	trow2 += "</tr>";
 	$("#dataTableBody").append(trow);
 	$("#dataTableBody").append(trow2);
@@ -226,18 +232,18 @@ function addRow() {
     
     // Generate a table row containing the desired material properties
     var trow = "<tr class='dataRow'>";
-	trow += "<td data-pname='T'>" + chosenTemp + "</td>";
-	trow += "<td data-pname='material'>" + window[chosenMaterial].name + "</td>";
-	trow += "<td data-pname='rho'>" + formatNum(rho) + "</td>";
-	trow += "<td data-pname='cp'>" + formatNum(cp) + "</td>";
-	trow += "<td data-pname='mu'>" + formatNum(mu) + "</td>";
-	trow += "<td data-pname='nu'>" + formatNum(nu) + "</td>";
-	trow += "<td data-pname='k'>" + formatNum(k) + "</td>";
-	trow += "<td data-pname='alpha'>" + formatNum(alpha) + "</td>";
-	trow += "<td data-pname='Pr'>" + formatNum(Pr) + "</td>";
-	trow += "<td data-pname='beta'>" + formatNum(beta) + "</td>";
-	trow += "<td data-pname='sigma'>" + formatNum(sigma) + "</td>";
-	trow += "<td data-pname='hfg'>" + formatNum(hfg) + "</td>";
+	trow += "<td class='T'>" + chosenTemp + "</td>";
+	trow += "<td class='calcCol matName'>" + window[chosenMaterial].name + "</td>";
+	trow += "<td class='calcCol rho'>" + formatNum(rho) + "</td>";
+	trow += "<td class='calcCol cp'>" + formatNum(cp) + "</td>";
+	trow += "<td class='calcCol mu'>" + formatNum(mu) + "</td>";
+	trow += "<td class='calcCol nu'>" + formatNum(nu) + "</td>";
+	trow += "<td class='calcCol k'>" + formatNum(k) + "</td>";
+	trow += "<td class='calcCol alpha'>" + formatNum(alpha) + "</td>";
+	trow += "<td class='calcCol pr'>" + formatNum(Pr) + "</td>";
+	trow += "<td class='calcCol beta'>" + formatNum(beta) + "</td>";
+	trow += "<td class='calcCol sigma'>" + formatNum(sigma) + "</td>";
+	trow += "<td class='calcCol hfg'>" + formatNum(hfg) + "</td>";
 	trow += "</tr>";
     $("#dataTableBody").append(trow);
     /**/
@@ -264,12 +270,7 @@ function formatNum(num) {
     }
 }
 
-function fillPropertyTables() {
-    // Prepare to access all material properties
-    var materials = ["AIR","NH3","CO2","CO","HE","H2","N2",
-		     "O2","STEAM","OIL","EG","GLY","R134A",
-		     "R22","HG","BISMUTH", "LEAD","POTASSIUM",
-		     "SODIUM","NAK45","NAK22","PBBI","WATER"];
+function fillAppendixTables() {
     var text = "";
     var tableName = "table_";
     
@@ -290,42 +291,45 @@ function fillPropertyTables() {
 	// Get the data from the JSON object
 	var data = window[materials[mat]];
 	
+	// Get table id so we can access the table
+	    tableName = "#table_" + data.table.toLowerCase() + "_body";
+	    
+	    // Label the following rows with the name of the material
+	    var labelRow = "<tr class='matLabel'><td colspan='12'>" +
+			    "<span class='target' id='" + data.id + "'>&nbsp;</span>" +
+			    "<span class='backToTop'>Top</span>" + data.name + "</td></tr>";
+	    $(tableName).append(labelRow);
+	    $(tableName).append(propLabels); 	// Label the property columns
+	    
 	if (data.id == "WATER") {
 	    //IGNORE
 	}
 	else {
-	    // Get table id so we can access the table
-	    tableName = "#table_" + data.table.toLowerCase() + "_body";
-	    
-	    // Label the following rows with the name of the material
-	    var labelRow = "<tr class='matLabel' href='#" + data.id + "'><td colspan='12'>" + data.name + "</td></tr>";
-	    $(tableName).append(labelRow);
-	    
 	    // Iterate through all the temperatures and display the properties
 	    for(i in data.T) {
 		// Generate a table row containing the desired material properties
 		var trow = "<tr class='propRow'>";
-		    trow += "<td data-pname='T'>" + data.T[i] + "</td>";
-		    trow += "<td data-pname='rho'>" + formatNum(data.rho[i]) + "</td>";
-		    trow += "<td data-pname='cp'>" + formatNum(data.cp[i]) + "</td>";
+		    trow += "<td class='tempCol " + data.id + "_T'>" + data.T[i] + "</td>";
+		    trow += "<td class='appCol " + data.id + "_rho'>" + formatNum(data.rho[i]) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_cp'>" + formatNum(data.cp[i]) + "</td>";
 		    if (data.table != "A7") {
-			trow += "<td data-pname='mu'>" + formatNum(data.mu[i]) + "</td>";
+			trow += "<td class='appCol " + data.id + "_mu'>" + formatNum(data.mu[i]) + "</td>";
 		    }
 		    else {
-			trow += "<td data-pname='mu'>" + blank + "</td>";
+			trow += "<td class='appCol " + data.id + "_mu'>" + blank + "</td>";
 		    }
-		    trow += "<td data-pname='nu'>" + formatNum(data.nu[i]) + "</td>";
-		    trow += "<td data-pname='k'>" + formatNum(data.k[i]) + "</td>";
-		    trow += "<td data-pname='alpha'>" + formatNum(data.alpha[i]) + "</td>";
-		    trow += "<td data-pname='Pr'>" + formatNum(data.pr[i]) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_nu'>" + formatNum(data.nu[i]) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_k'>" + formatNum(data.k[i]) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_alpha'>" + formatNum(data.alpha[i]) + "</td>";
+		    trow += "<td class='appCol " + data.id + "_Pr'>" + formatNum(data.pr[i]) + "</td>";
 		    if (data.table == "A5") {
-			trow += "<td data-pname='beta'>" + formatNum(data.beta[i]) + "</td>";
+			trow += "<td class='appCol " + data.id + "_beta'>" + formatNum(data.beta[i]) + "</td>";
 		    }
 		    else {
-			trow += "<td data-pname='beta'>" + blank + "</td>";
+			trow += "<td class='appCol " + data.id + "_beta'>" + blank + "</td>";
 		    }
-		    trow += "<td data-pname='sigma'>" + blank + "</td>";
-		    trow += "<td data-pname='hfg'>" + blank + "</td>";
+		    trow += "<td class='appCol " + data.id + "_sigma'>" + blank + "</td>";
+		    trow += "<td class='appCol " + data.id + "_hfg'>" + blank + "</td>";
 		    //trow += "<td data-pname='sigma'>" + formatNum(data.sigma[i]) + "</td>";
 		    //trow += "<td data-pname='hfg'>" + formatNum(data.hfg[i]) + "</td>";
 		    trow += "</tr>";
@@ -338,23 +342,198 @@ function fillPropertyTables() {
     }
 }
 
+function materialSelections() {
+    
+    for(i in materials) {
+	var mat = window[materials[i]];
+	var tableName = "#" + String(mat.table).toLowerCase() + "_selections";
+	var selection = "<li><a href='#" + mat.id + "'>" + mat.name + "</a></li>";
+	$(tableName).append(selection);
+	
+    }
+//    var selections = "<ul>";
+//    +
+//			"<li></li>" +
+//			"<li></li>" +
+//			"<li></li>" +
+//		     "</ul>";
+//    $("#selectMaterial").html(selections);
+}
 /********************************************************
  *	    Document ready and keypress events
  ********************************************************/
 $( document ).ready(function() {
     // Add the table heading to the main calculated property table
     $("#dataTable").append("<thead>" + calcPropLabels + "</thead>");
+    $("#dataTable").append("<tbody id='dataTableBody'></tbody>");
     
     // Load appendix tables in background
     $(".appendixTable").hide();
-    fillPropertyTables();
+    $("#selectMaterial").hide();
+    fillAppendixTables();
+    materialSelections();	// Option to click a specific material
 });
+
+// PLOTTING VARIABLES
+var tempArray = [];	// For plotting property values (stores temperatures)
+var propArray = [];	// For plotting property values (stores property values)
+var propName = ''; 	// For plotting property values (stores property name (e.g. cp, rho, etc.))
+var matNameArray = [];	// For plotting property values (stores name of material)
+
+// When an appendix table column is hovered, highlight whole column
+$('.appendixTable').on('mouseenter', '.appCol', function() {
+    // Figure out which material is highlighted
+    var classes = this.className.split(/\s+/);
+    var matID = classes[1].split("_")[0];
+    propName = classes[1].split("_")[1];
+
+    // Iterate through all of the rows for this material/property combo
+    var temps = $("." + classes[1]).each(function(i,obj) {
+	$(obj).addClass("warning plotMe cursor");	// Mark for plotting
+
+	// Store values in arrays for plotting
+	propArray.push( parseFloat($(obj).html()) );
+	tempArray.push( parseFloat($(obj.parentNode).children(".tempCol").html()) );
+	matNameArray.push(window[matID].name);  // Intentionally push multiple copies for easier indexing in plot()
+    });
+});
+$('.appendixTable').on('mouseleave', '.appCol', function() {
+    var classes = this.className.split(/\s+/);
+    var temps = $("." + classes[1]).each(function(i,obj) {
+	$(obj).removeClass("warning plotMe cursor");	// Unmark for plotting
+    });
+    
+    // Clear the data arrays for storing
+    propArray = [];
+    tempArray = [];
+});
+
+// When a row of the appendix table is clicked, plot the corresponding property values
+$('.appendixTable').on('click', '.plotMe', function() {
+    plotAppendix();
+});
+
+// When a calculated table column is hovered, highlight whole column
+$('#dataPanel').on('mouseenter', '.calcCol', function() {
+    // Figure out which material is highlighted
+    var classes = this.className.split(/\s+/);
+    propName = classes[1];
+
+    // Iterate through all of the rows in the calculated table and plot the property values
+    var temps = $("." + classes[1]).each(function(i,obj) {
+	$(obj).addClass("warning plotMe cursor");	// Mark for plotting
+	
+	// Store values in arrays for plotting
+	propArray.push( parseFloat($(obj).html()) );
+	tempArray.push( parseFloat($(obj.parentNode).children(".T").html()) );
+	matNameArray.push( $(obj.parentNode).children(".matName").text() );
+    });
+});
+$('#dataPanel').on('mouseleave', '.calcCol', function() {
+var classes = this.className.split(/\s+/);
+    var temps = $("." + classes[1]).each(function(i,obj) {
+	$(obj).removeClass("warning plotMe cursor");	// Unmark for plotting
+    });
+    
+    // Clear the data arrays for storing
+    propArray = [];
+    tempArray = [];
+    matNameArray = [];
+});
+
+// When a row of the appendix table is clicked, plot the corresponding property values
+$('#dataPanel').on('click', '.plotMe', function() {
+    plotCalculated();
+});
+
+// Plot property values vs. temperature from the list of calculated values
+function plotCalculated() {
+    
+    // Generate the series objects
+    sObjects = [];
+    var points = [];
+    for(i in tempArray) {
+	sObjects.push( {
+	    name: matNameArray[i] + " @ " + tempArray[i] + " K",
+	    data: [propArray[i]]
+	});
+    }
+    
+    $('#plotContainer').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Comparison of ' + propName + ' Values'
+        },
+        yAxis: {
+            title: {
+                text: propName
+            }
+        },
+	series: sObjects
+    });
+    
+    // Display the plot
+    $('#comparePlot').modal({
+	keyboard: true,
+	show: true
+    });
+}
+
+// Plot property values vs. temperature from the appendix tables
+function plotAppendix() {
+    
+    // Generate the series objects
+    sObjects = [];
+    var points = [];
+    for(i in tempArray) {
+	points.push([tempArray[i],propArray[i]]);
+    }
+    var curSeries = {
+	name:matNameArray[0],
+	data:points
+    }
+    
+    // Add to list of series objects
+    sObjects.push(curSeries);
+    
+    $('#plotContainer').highcharts({
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: propName + ' vs. Temperature'
+        },
+        xAxis: {
+            title: {
+                text: 'Temperature (K)'
+            }
+        },
+        yAxis: {
+            title: {
+                text: propName
+            }
+        },
+	series: sObjects
+    });
+    
+    // Display the plot
+    $('#comparePlot').modal({
+	keyboard: true,
+	show: true
+    });
+}
 
 // Capture the ENTER key for calculating
 $(document).keypress(function(e) {
   if(e.which == 13) {
-    if(validate()) {
-	addRow();
+    if ($("#temp").is(":focus")) {
+	if (document.getElementById("temp").value != "") {
+	    if(validate()) {
+	    addRow();
+	    }
+	}
     }
   }
 });
@@ -380,6 +559,7 @@ $("#tablesButton").click(function() {
     $("#clearTable").hide();
     $("#dataPanel").hide();
     $(".appendixTable").show();
+    $("#selectMaterial").show();
 });
 
 // Function to switch view from property calculator to
@@ -393,7 +573,7 @@ $("#propCalcButton").click(function() {
     $("#clearTable").show();
     $("#dataPanel").show("");
     $(".appendixTable").hide();
-
+    $("#selectMaterial").hide();
 });
 
 // Function for when user selects a material from the dropdown
@@ -425,6 +605,13 @@ $("#clearTable").click(function() {
     document.getElementById("temp").value = "";
 });
 
-$(".backToTop").click(function() {
+// Take user back to top of page from any table position
+$('.appendixTable').on('click', '.backToTop', function(){
+    window.location.hash = "";
     window.location.hash = "TOP";
+});
+
+// Clear selected and calculated properties
+$("#about").click(function() {
+    plotAppendix();
 });
