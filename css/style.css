@@ -331,3 +331,49 @@ body {
 .cursor {
   cursor:pointer;
 }
+
+/* Styles for About pop-up */
+#aboutHeader {
+  text-align:center;
+}
+#progTitle {
+  text-align:center;
+  font-size:36px;
+  margin-bottom:0px;
+}
+#progVersion{
+  text-align:center;
+  margin-top:5px;
+  font-size:16px;
+  font-style:italic;
+  color:#666;
+}
+#progAuthor {
+  text-align:center;
+  margin-top:35px;
+  margin-bottom:0px;
+}
+#progDate {
+  margin-top:5px;
+  font-size:16px;
+  text-align:center;
+  color:#666;
+}
+#progDescription {
+  padding:10px;
+}
+#features {
+  width:100%;
+  margin:auto;
+  display:block;
+}
+#progDescription ul {
+  font-weight:bold;
+  font-size:14px;
+}
+#progDescription ul li {
+  font-weight:normal;
+  font-size:14px;
+}
+#aboutText .modal-content {
+}

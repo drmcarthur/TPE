@@ -182,7 +182,7 @@
             </div>
           </div>
           
-          <!-- Large modal (About) -->
+          <!-- Large modal (Plots) -->
           <div class="modal fade plot" id="comparePlot" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
@@ -191,6 +191,46 @@
               </div>
             </div>
           </div>
+          
+          <!-- Small modal (About) -->
+          <div class="modal fade plot" id="aboutText" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <h1 id="progTitle">Thermophysical Property Explorer</h2>
+                <h3 id="progVersion">Version 1.0</h3>
+                <h3 id="progAuthor">Written by Daniel McArthur</h3>
+                <h3 id="progDate">April 2014</h3>
+                <div id="progDescription">
+                  <p>
+                    <b>Overview:</b><br/>This application provides quick and easy access to the thermophysical properties
+                    listed in Appendix A.4-7 of <b><em>Fundamentals of Heat and Mass Transfer, 7th ed.</em></b> by <em>Bergman et al.</em>
+                    Property values for temperatures not specifically listed in the tables are calculated based on
+                    simple linear interpolation.
+                  </p>
+                  <p>
+                    Once at least one value has been calculated on the <b>Property Calculator</b> page,
+                    clicking on any column will bring up a column chart, providing a vibrant visual
+                    comparison of the material properties for each of the materials/temperatures listed.
+                    On the <b>Tables</b> page, clicking on any column will bring up a plot of that material
+                    property vs. temperature.
+                  </p>
+                  <div id="features">
+                    <ul>
+                      Key Features:
+                      <li>Table format displays multiple calculated properties simultaneously</li>
+                      <li>Animated charts compare properties for different materials</li>
+                      <li>Animated plots help visualize how properties change with temperature</li>
+                      <li>Pure HTML/Javascript; code can run on a server, or locally on any OS</li>
+                      <li>Properties listed in standard SI units, to avoid computational errors</li>
+                      <li>All data stored in JSON so it can be updated/edited easily</li>
+                      </ul>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>   <!-- end main content -->  
       </div>
     </div>

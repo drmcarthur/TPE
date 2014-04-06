@@ -14,29 +14,29 @@ var materials = ["AIR","NH3","CO2","CO","HE","H2","N2",
 // Set up the property labels for all of the appendix tables
 var propLabels = "<tr class='propLabel'><th>Temp<br/>(K)</th>" +
 		 "<th>&rho;<br/>(kg/m<sup>3</sup>)</th>" + 
-		 "<th>c<sub>p</sub><br/>(kJ/kg&sdot;K)</th>" +
-		 "<th>&mu;&sdot;10<sup>2</sup><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
-		 "<th>&nu;&sdot;10<sup>6</sup><br/>(m<sup>2</sup>/s)</th>" +
-		 "<th>k&sdot;10<sup>3</sup><br/>(W/m&sdot;K)</th>" +
-		 "<th>&alpha;&sdot;10<sup>7</sup><br/>(m<sup>2</sup>/s)</th>" +
+		 "<th>c<sub>p</sub><br/>(J/kg&sdot;K)</th>" +
+		 "<th>&mu;<br/>(N&sdot;s/m<sup>2</sup>)</th>" +
+		 "<th>&nu;<br/>(m<sup>2</sup>/s)</th>" +
+		 "<th>k<br/>(W/m&sdot;K)</th>" +
+		 "<th>&alpha;<br/>(m<sup>2</sup>/s)</th>" +
 		 "<th>Pr</th>" +
-		 "<th>&beta;&sdot;10<sup>3</sup><br/>(K<sup>-1</sup>)</th>" +
-		 "<th>&sigma;&sdot;10<sup>3</sup><br/>(N/m)</th>" +
-		 "<th>h<sub>fg</sub><br/>(kJ/kg)</th>" +
+		 "<th>&beta;<br/>(K<sup>-1</sup>)</th>" +
+		 "<th>&sigma;<br/>(N/m)</th>" +
+		 "<th>h<sub>fg</sub><br/>(J/kg)</th>" +
 		 "</tr>";
 	
 // Set up the property labels for the calculated property table
 var calcPropLabels = "<tr><th>Temp<br/>(K)</th>" + "<th>Material</th>" +
 		 "<th>&rho;<br/>(kg/m<sup>3</sup>)</th>" + 
-		 "<th>c<sub>p</sub><br/>(kJ/kg&sdot;K)</th>" +
-		 "<th>&mu;&sdot;10<sup>2</sup><br/>(N&sdot;s/m<sup>2</sup>)</th>" +
-		 "<th>&nu;&sdot;10<sup>6</sup><br/>(m<sup>2</sup>/s)</th>" +
-		 "<th>k&sdot;10<sup>3</sup><br/>(W/m&sdot;K)</th>" +
-		 "<th>&alpha;&sdot;10<sup>7</sup><br/>(m<sup>2</sup>/s)</th>" +
+		 "<th>c<sub>p</sub><br/>(J/kg&sdot;K)</th>" +
+		 "<th>&mu;<br/>(N&sdot;s/m<sup>2</sup>)</th>" +
+		 "<th>&nu;<br/>(m<sup>2</sup>/s)</th>" +
+		 "<th>k<br/>(W/m&sdot;K)</th>" +
+		 "<th>&alpha;<br/>(m<sup>2</sup>/s)</th>" +
 		 "<th>Pr</th>" +
-		 "<th>&beta;&sdot;10<sup>3</sup><br/>(K<sup>-1</sup>)</th>" +
-		 "<th>&sigma;&sdot;10<sup>3</sup><br/>(N/m)</th>" +
-		 "<th>h<sub>fg</sub><br/>(kJ/kg)</th>" +
+		 "<th>&beta;<br/>(K<sup>-1</sup>)</th>" +
+		 "<th>&sigma;<br/>(N/m)</th>" +
+		 "<th>h<sub>fg</sub><br/>(J/kg)</th>" +
 		 "</tr>";
 		 
 // Validate input data
@@ -81,6 +81,9 @@ var chosenMaterial = "";	// Store the currently selected material
 var chosenTemp = 0;		// Store the currently entered temperature
 
 function addRow() {
+    // Clear the input temperature
+    document.getElementById("temp").value = "";
+
     var p = 5;	// (precision) Number of decimals to display in table
     
     // Create variables for all of the properties we'll be displaying
@@ -118,14 +121,13 @@ function addRow() {
      */
     if (table == "A4") {
 	// Bring in properties, but ensure a universal unit scheme is followed
-	cp = interpolate(fraction,i,window[chosenMaterial]["cp"]);
-	k = interpolate(fraction,i,window[chosenMaterial]["k"]);
+	cp = interpolate(fraction,i,window[chosenMaterial]["cp"])*1000;
+	k = interpolate(fraction,i,window[chosenMaterial]["k"])/1000;
 	Pr = interpolate(fraction,i,window[chosenMaterial]["pr"]);
 	rho = interpolate(fraction,i,window[chosenMaterial]["rho"]);
-	mu = 100 * (interpolate(fraction,i,window[chosenMaterial]["mu"])/Math.pow(10,7));
-	nu = interpolate(fraction,i,window[chosenMaterial]["nu"]);
-	alpha = Math.pow(10,7) * interpolate(fraction,i,window[chosenMaterial]["alpha"])
-			/ Math.pow(10,6);
+	mu = interpolate(fraction,i,window[chosenMaterial]["mu"])/Math.pow(10,7);
+	nu = interpolate(fraction,i,window[chosenMaterial]["nu"])/Math.pow(10,6);
+	alpha = interpolate(fraction,i,window[chosenMaterial]["alpha"])/Math.pow(10,6);
 	sigma = blank;
 	hfg = blank;
 	beta = blank;
@@ -134,58 +136,55 @@ function addRow() {
 	//beta = "&asymp; " + betaVal;
     }
     else if (table == "A5") {
-	cp = interpolate(fraction,i,window[chosenMaterial]["cp"]);
-	k = interpolate(fraction,i,window[chosenMaterial]["k"]);   
+	cp = interpolate(fraction,i,window[chosenMaterial]["cp"])*1000;
+	k = interpolate(fraction,i,window[chosenMaterial]["k"])/1000;   
 	Pr = interpolate(fraction,i,window[chosenMaterial]["pr"]);
 	rho = interpolate(fraction,i,window[chosenMaterial]["rho"]);
-	mu = interpolate(fraction,i,window[chosenMaterial]["mu"]);
-	nu = interpolate(fraction,i,window[chosenMaterial]["nu"]);
-	alpha = interpolate(fraction,i,window[chosenMaterial]["alpha"]);
-	beta = interpolate(fraction,i,window[chosenMaterial]["beta"]);
+	mu = interpolate(fraction,i,window[chosenMaterial]["mu"])/Math.pow(10,2);
+	nu = interpolate(fraction,i,window[chosenMaterial]["nu"])/Math.pow(10,6);
+	alpha = interpolate(fraction,i,window[chosenMaterial]["alpha"])/Math.pow(10,7);
+	beta = interpolate(fraction,i,window[chosenMaterial]["beta"])/1000;
 	sigma = blank;
 	hfg = blank;
     }
     else if (table == "A6") {
 	// Fluid properties
-	cp = interpolate(fraction,i,window[chosenMaterial]["cpf"]);
-	k = interpolate(fraction,i,window[chosenMaterial]["kf"]);   
+	cp = interpolate(fraction,i,window[chosenMaterial]["cpf"])*1000;
+	k = interpolate(fraction,i,window[chosenMaterial]["kf"])/1000;   
 	Pr = interpolate(fraction,i,window[chosenMaterial]["prf"]);
-	mu = 100 * (interpolate(fraction,i,window[chosenMaterial]["muf"])/Math.pow(10,6));
+	mu = interpolate(fraction,i,window[chosenMaterial]["muf"])/Math.pow(10,6);
 	if (window[chosenMaterial]["betaf"] == NaN) {
 	    beta = blank;
 	}
 	else {
-	    beta = 1000 * (interpolate(fraction,i,window[chosenMaterial]["betaf"])/Math.pow(10,6)); 
+	    beta = interpolate(fraction,i,window[chosenMaterial]["betaf"])/Math.pow(10,6); 
 	}
-	sigma = interpolate(fraction,i,window[chosenMaterial]["sigmaf"]);;
-	hfg = interpolate(fraction,i,window[chosenMaterial]["hfg"]);
+	sigma = interpolate(fraction,i,window[chosenMaterial]["sigmaf"])/1000;
+	hfg = interpolate(fraction,i,window[chosenMaterial]["hfg"])*1000;
 	
 	// Calculate nu, rho and alpha from known values
 	rho = 1 / (interpolate(fraction,i,window[chosenMaterial]["vf"])/1000);	// inverse of v
-	alpha = Math.pow(10,7) * ((k/1000) / (rho * cp*1000));	// 1000 converts the units from kJ to J
-	nu = Math.pow(10,6) * (interpolate(fraction,i,window[chosenMaterial]["muf"])/Math.pow(10,6))
-		* (interpolate(fraction,i,window[chosenMaterial]["vf"])/1000);
+	alpha = (k / (rho * cp));
+	nu = mu * (interpolate(fraction,i,window[chosenMaterial]["vf"])/1000);
 
 	// Gas properties
-	var cpg = interpolate(fraction,i,window[chosenMaterial]["cpg"]);
-	var kg = interpolate(fraction,i,window[chosenMaterial]["kg"]);   
+	var cpg = interpolate(fraction,i,window[chosenMaterial]["cpg"])*1000;
+	var kg = interpolate(fraction,i,window[chosenMaterial]["kg"])/1000;   
 	var Prg = interpolate(fraction,i,window[chosenMaterial]["prg"]);
-	var mug = interpolate(fraction,i,window[chosenMaterial]["mug"]);
+	var mug = interpolate(fraction,i,window[chosenMaterial]["mug"])/Math.pow(10,6);
 	var betag = blank;
 	var sigmag = blank;
-	var hfg = interpolate(fraction,i,window[chosenMaterial]["hfg"]);
 	
 	// Calculate nu, rho and alpha from known values
 	var rhog = 1 / (interpolate(fraction,i,window[chosenMaterial]["vg"])/1000);	// inverse of v
-	var alphag = Math.pow(10,7) * ( (k/1000) / (rho * cp*1000) );
-	var nug = Math.pow(10,6) * (interpolate(fraction,i,window[chosenMaterial]["mug"])/Math.pow(10,6))
-		    * (interpolate(fraction,i,window[chosenMaterial]["vg"])/1000);
+	var alphag = kg / (rhog * cpg);
+	var nug = mug * (interpolate(fraction,i,window[chosenMaterial]["vg"])/1000);
 	
 	// Water table has data for fluid and gas, so build separate table rows here
 	// Generate a table row containing the desired material properties
 	var trow = "<tr class='dataRow'>";
-	trow += "<td class='T'>" + chosenTemp + "</td>";
-	trow += "<td class='calcCol matName'>" + window[chosenMaterial].name + "<sub>fluid</sub></td>";
+	trow += "<td class='delRow T'>" + chosenTemp + "</td>";
+	trow += "<td class='matName'>" + window[chosenMaterial].name + "<sub>fluid</sub></td>";
 	trow += "<td class='calcCol rho'>" + formatNum(rho) + "</td>";
 	trow += "<td class='calcCol cp'>" + formatNum(cp) + "</td>";
 	trow += "<td class='calcCol mu'>" + formatNum(mu) + "</td>";
@@ -194,12 +193,12 @@ function addRow() {
 	trow += "<td class='calcCol alpha'>" + formatNum(alpha) + "</td>";
 	trow += "<td class='calcCol pr'>" + formatNum(Pr) + "</td>";
 	trow += "<td class='calcCol beta'>" + formatNum(beta) + "</td>";
-	trow += "<td class='calcCol sigma'>" + formatNum(sigmag) + "</td>";
+	trow += "<td class='calcCol sigma'>" + formatNum(sigma) + "</td>";
 	trow += "<td class='calcCol hfg'>" + formatNum(hfg) + "</td>";
 	trow += "</tr>";
 	var trow2 = "<tr class='dataRow'>";
-	trow2 += "<td class='T'>" + chosenTemp + "</td>";
-	trow2 += "<td class='calcCol matName'>" + window[chosenMaterial].name + "<sub>gas</sub></td>";
+	trow2 += "<td class='delRow T'>" + chosenTemp + "</td>";
+	trow2 += "<td class='matName'>" + window[chosenMaterial].name + "<sub>gas</sub></td>";
 	trow2 += "<td class='calcCol rho'>" + formatNum(rhog) + "</td>";
 	trow2 += "<td class='calcCol cp'>" + formatNum(cpg) + "</td>";
 	trow2 += "<td class='calcCol mu'>" + formatNum(mug) + "</td>";
@@ -217,23 +216,23 @@ function addRow() {
     }
     else if (table == "A7") {
 	rho = interpolate(fraction,i,window[chosenMaterial]["rho"]);
-	cp = interpolate(fraction,i,window[chosenMaterial]["cp"]);
-	nu = Math.pow(10,6) * (interpolate(fraction,i,window[chosenMaterial]["nu"]) / Math.pow(10,7));
-	k = 1000 * interpolate(fraction,i,window[chosenMaterial]["k"]);
-	alpha = Math.pow(10,7) * (interpolate(fraction,i,window[chosenMaterial]["alpha"])/Math.pow(10,5));
+	cp = interpolate(fraction,i,window[chosenMaterial]["cp"])*1000;
+	nu = interpolate(fraction,i,window[chosenMaterial]["nu"]) / Math.pow(10,7);
+	k = interpolate(fraction,i,window[chosenMaterial]["k"]);
+	alpha = interpolate(fraction,i,window[chosenMaterial]["alpha"])/Math.pow(10,5);
 	Pr = interpolate(fraction,i,window[chosenMaterial]["pr"]);
 	beta = blank;
 	sigma = blank;
 	hfg = blank;
 	
 	// Calculate mu from density and nu
-	mu = 100 *(nu/Math.pow(10,7)) * rho;
+	mu = nu * rho;
     }
     
     // Generate a table row containing the desired material properties
     var trow = "<tr class='dataRow'>";
-	trow += "<td class='T'>" + chosenTemp + "</td>";
-	trow += "<td class='calcCol matName'>" + window[chosenMaterial].name + "</td>";
+	trow += "<td class='delRow T'>" + chosenTemp + "</td>";
+	trow += "<td class='matName'>" + window[chosenMaterial].name + "</td>";
 	trow += "<td class='calcCol rho'>" + formatNum(rho) + "</td>";
 	trow += "<td class='calcCol cp'>" + formatNum(cp) + "</td>";
 	trow += "<td class='calcCol mu'>" + formatNum(mu) + "</td>";
@@ -246,7 +245,6 @@ function addRow() {
 	trow += "<td class='calcCol hfg'>" + formatNum(hfg) + "</td>";
 	trow += "</tr>";
     $("#dataTableBody").append(trow);
-    /**/
 }
 
 // Function to interpolate a value from a table
@@ -374,6 +372,22 @@ $( document ).ready(function() {
     materialSelections();	// Option to click a specific material
 });
 
+// Delete Rows from Calculated Table
+$('#dataPanel').on('mouseenter', '.delRow', function() {
+    $(this.parentNode).addClass("danger cursor");
+});
+$('#dataPanel').on('mouseleave', '.delRow', function() {
+var classes = this.className.split(/\s+/);
+    $(this.parentNode).removeClass("danger cursor");
+});
+
+// When a row of the appendix table is clicked, plot the corresponding property values
+$('#dataPanel').on('click', '.danger', function() {
+    $(this).remove();
+});
+
+
+
 // PLOTTING VARIABLES
 var tempArray = [];	// For plotting property values (stores temperatures)
 var propArray = [];	// For plotting property values (stores property values)
@@ -453,9 +467,18 @@ function plotCalculated() {
     sObjects = [];
     var points = [];
     for(i in tempArray) {
+	var propVal = 0;
+	if (propArray[i] == Infinity) {
+	    propVal = 999999999;
+	} else if (isNaN(propArray[i]) ) {
+	    propVal = 0;
+	}
+	else {
+	    propVal = propArray[i];
+	}
 	sObjects.push( {
 	    name: matNameArray[i] + " @ " + tempArray[i] + " K",
-	    data: [propArray[i]]
+	    data: [propVal]
 	});
     }
     
@@ -531,7 +554,7 @@ $(document).keypress(function(e) {
     if ($("#temp").is(":focus")) {
 	if (document.getElementById("temp").value != "") {
 	    if(validate()) {
-	    addRow();
+		addRow();
 	    }
 	}
     }
@@ -591,6 +614,7 @@ $(".material").click(function() {
 			 window[this.dataset.material].tMax + ' K');
     chosenMaterial = window[this.dataset.material].id;
     $(this).parent().click();
+    document.getElementById("temp").focus();
 });
 
 // Clear selected and calculated properties
@@ -613,5 +637,9 @@ $('.appendixTable').on('click', '.backToTop', function(){
 
 // Clear selected and calculated properties
 $("#about").click(function() {
-    plotAppendix();
+    // Display the 'About' information
+    $('#aboutText').modal({
+	keyboard: true,
+	show: true
+    });
 });
