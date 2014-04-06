@@ -533,16 +533,16 @@ function plotCalculated() {
     for(i in tempArray) {
 	var propVal = 0;
 	if (propArray[i] == Infinity) {
-	    propVal = 999999999;
+	    //propVal = 999999999;
 	} else if (isNaN(propArray[i]) ) {
 	    propVal = 0;
 	}
-	else {
+	else {	// Don't worry about plotting invalid numbers (NaN or Infinity)
 	    propVal = propArray[i];
 	}
 	sObjects.push( {
-	    name: matNameArray[i] + " @ " + tempArray[i] + " K",
-	    data: [propVal]
+	name: matNameArray[i] + " @ " + tempArray[i] + " K",
+	data: [propVal]
 	});
     }
     
@@ -575,7 +575,16 @@ function plotAppendix() {
     sObjects = [];
     var points = [];
     for(i in tempArray) {
-	points.push([tempArray[i],propArray[i]]);
+	var propVal = 0;
+	if (propArray[i] == Infinity) {
+	    //propVal = 8*propArray[i-1]; // Represent 'infinity' within an order of magnitude
+	} else if (isNaN(propArray[i]) ) {
+	    propVal = 0;
+	}
+	else {
+	    propVal = propArray[i];
+	    points.push([tempArray[i],propVal]); // Only print value if it is valid
+	}
     }
     var curSeries = {
 	name:matNameArray[0],
