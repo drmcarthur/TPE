@@ -114,7 +114,9 @@ body {
 
 #dataTableBody
 {
-  /*display:none;*/
+}
+#dataTable {
+  width: 99.99%;  /* No scroll bar */
 }
 #dataTable>tbody>tr>td, .propTable>tbody>tr>td, .propLabel>td{
   white-space:nowrap;
@@ -223,8 +225,9 @@ body {
 }
 
 .table-responsive {
-  overflow:scroll;
+  overflow:auto;
 }
+
 
 .sidebar {
   max-width:145px;
