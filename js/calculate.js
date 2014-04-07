@@ -221,6 +221,8 @@ function addRow() {
 	trow2 += "</tr>";
 	$("#dataTableBody").append(trow);
 	$("#dataTableBody").append(trow2);
+	chosenMaterials.push(chosenMaterial);
+	chosenTemps.push(chosenTemp);
 	return;
     }
     else if (table == "A7") {
