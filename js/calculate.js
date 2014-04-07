@@ -704,6 +704,8 @@ $(".material").click(function() {
 $("#clearTable").click(function() {
     chosenMaterial = "";		// Reset the currently selected material
     chosenTemp = 0;			// Reset the currently enetered temperature
+    chosenTemps = [];			// Reset History of entered temps (to prevent duplicates)
+    chosenMaterials = [];		// Reset History of chosen materials (to prevent duplicates)
     
     // Remove all displayed properties and deselect a material at the top
     $("#materialText").html("");	// Hide the selected material display
